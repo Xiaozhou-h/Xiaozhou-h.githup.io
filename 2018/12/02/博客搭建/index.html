@@ -108,20 +108,24 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="简单介绍一下搭建hexo的流程： 1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。 2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。 3.部署到github：创建repository；添加ssh key；在hexo配置文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用hexo搭建简单的博客">
+<meta property="og:url" content="http://yoursite.com/2018/12/02/博客搭建/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简单介绍一下搭建hexo的流程： 1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。 2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。 3.部署到github：创建repository；添加ssh key；在hexo配置文">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-02T12:20:27.287Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="利用hexo搭建简单的博客">
+<meta name="twitter:description" content="简单介绍一下搭建hexo的流程： 1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。 2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。 3.部署到github：创建repository；添加ssh key；在hexo配置文">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2018/12/02/博客搭建/">
 
 
 
@@ -131,7 +135,7 @@
   };
 </script>
 
-  <title>Hexo</title>
+  <title>利用hexo搭建简单的博客 | Hexo</title>
   
 
 
@@ -180,8 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -218,7 +221,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -280,9 +283,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -314,10 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/02/博客搭建/" class="post-title-link" itemprop="http://yoursite.com/index.html">利用hexo搭建简单的博客</a>
+          <h1 class="post-title" itemprop="name headline">利用hexo搭建简单的博客
               
             
           </h1>
@@ -380,9 +380,7 @@
       
 
       
-        
-          
-            <h1 id="简单介绍一下搭建hexo的流程："><a href="#简单介绍一下搭建hexo的流程：" class="headerlink" title="简单介绍一下搭建hexo的流程："></a>简单介绍一下搭建hexo的流程：</h1><blockquote>
+        <h1 id="简单介绍一下搭建hexo的流程："><a href="#简单介绍一下搭建hexo的流程：" class="headerlink" title="简单介绍一下搭建hexo的流程："></a>简单介绍一下搭建hexo的流程：</h1><blockquote>
 <p>1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。</p>
 <p>2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。</p>
 <p>3.部署到github：创建repository；添加ssh key；在hexo配置文件hexo_config.yml中修改，完成部署。</p>
@@ -482,8 +480,6 @@
 <li><a href="http://ywtail.github.io/2016/05/14/hexo-1/" target="_blank" rel="noopener">hexo 简单搭建</a></li>
 </ul>
 
-          
-        
       
     </div>
 
@@ -506,12 +502,12 @@
       
 
       
+      
+      
 
       
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -521,14 +517,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -549,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table Des Matières
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Ensemble
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -594,6 +600,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简单介绍一下搭建hexo的流程："><span class="nav-number">1.</span> <span class="nav-text">简单介绍一下搭建hexo的流程：</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、注册Github账号"><span class="nav-number">1.1.</span> <span class="nav-text">一、注册Github账号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、软件安装"><span class="nav-number">1.2.</span> <span class="nav-text">二、软件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、安装Git"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">1、安装Git</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、安装Node-js"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">2、安装Node.js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、安装hexo"><span class="nav-number">1.2.0.3.</span> <span class="nav-text">3、安装hexo</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、本地hexo配置及本地查看"><span class="nav-number">1.3.</span> <span class="nav-text">三、本地hexo配置及本地查看</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、创建hexo文件夹并安装npm"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">1、创建hexo文件夹并安装npm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、本地查看"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">2、本地查看</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意"><span class="nav-number">1.3.0.2.1.</span> <span class="nav-text">注意:</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#四、创建repository"><span class="nav-number">1.4.</span> <span class="nav-text">四、创建repository</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、添加SSH-key"><span class="nav-number">1.5.</span> <span class="nav-text">五、添加SSH key</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、部署"><span class="nav-number">1.6.</span> <span class="nav-text">六、部署</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#注意-1"><span class="nav-number">1.6.0.0.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、更新博客"><span class="nav-number">1.7.</span> <span class="nav-text">七、更新博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、写博客"><span class="nav-number">1.8.</span> <span class="nav-text">八、写博客</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -722,6 +744,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
 
   
 
