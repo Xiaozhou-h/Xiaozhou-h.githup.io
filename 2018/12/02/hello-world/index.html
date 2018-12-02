@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一、简单介绍一下搭建hexo的流程：  1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。3.部署到github：创建repository；添加ssh key；在hexo配置">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-02T11:53:33.998Z">
+<meta property="og:updated_time" content="2018-12-02T11:59:44.461Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用hexo搭建简单的博客">
 <meta name="twitter:description" content="一、简单介绍一下搭建hexo的流程：  1.完成准备工作：安装git；安装node.js；bash下hexo init安装hexo;bash下npm install安装依赖包。2.本地查看：使用hexo g生成；使用hexo s打开服务器；在浏览器输入127.0.0.1:4000或localhost:4000查看。3.部署到github：创建repository；添加ssh key；在hexo配置">
@@ -134,7 +134,7 @@
 <h2 id="六、部署"><a href="#六、部署" class="headerlink" title="六、部署"></a>六、部署</h2><hr>
 <p>编辑H:\hexo_config.yml。 其中repository为SSH</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; deploy:</span><br><span class="line">&gt;   type: git</span><br><span class="line">&gt;   repository: git@github.com:Xiaozhou-h/Xiaozhou-h.githup.io.git</span><br><span class="line">&gt;   branch: master</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>deploy:<br>  type: git<br>  repository: <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:Xiaozhou-h/Xiaozhou-h.githup.io.git<br>  branch: master</p>
 </blockquote>
 <p>执行以下命令完成部署。 </p>
 <blockquote>
@@ -154,9 +154,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*** Please tell me who you are.</span><br><span class="line"> Run</span><br><span class="line">   git config --global user.email <span class="string">"you@example.com"</span></span><br><span class="line">   git config --global user.name <span class="string">"Your Name"</span></span><br><span class="line"> to <span class="built_in">set</span> your account<span class="string">'s default identity.</span></span><br><span class="line"><span class="string"> Omit --global to set the identity only in this repository.</span></span><br></pre></td></tr></table></figure>
 <p>按照上面的提示输入email和name。 </p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt; git config --global user.email &quot;you@example.com&quot;</span><br><span class="line">&gt; git config --global user.name &quot;Your Name&quot;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>git config –global user.email “<a href="mailto:you@example.com" target="_blank" rel="noopener">you@example.com</a>“<br>git config –global user.name “Your Name”</p>
 </blockquote>
-<h2 id="七、写博客"><a href="#七、写博客" class="headerlink" title="七、写博客"></a>七、写博客</h2><p>新建博客，在bash下输入以下命令就可以完成名为testname.md博客文件的新建，在<code>H:\hexo\source\_posts</code>可以找到。 </p>
+<h2 id="七、更新博客"><a href="#七、更新博客" class="headerlink" title="七、更新博客"></a>七、更新博客</h2><hr>
+<p>更新自己以前写的博客，在bash下输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h2 id="八、写博客"><a href="#八、写博客" class="headerlink" title="八、写博客"></a>八、写博客</h2><hr>
+<p>新建博客，在bash下输入以下命令就可以完成名为testname.md博客文件的新建，在<code>H:\hexo\source\_posts</code>可以找到。 </p>
 <blockquote>
 <p>hexo new “testname” </p>
 </blockquote>
