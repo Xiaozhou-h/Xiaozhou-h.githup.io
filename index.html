@@ -368,7 +368,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2018/12/18/Docker容器的重启攻略--restart/" class="post-title-link" itemprop="http://yoursite.com/index.html">Unbenannt</a>
+                <a href="/2018/12/18/Docker容器的重启攻略--restart/" class="post-title-link" itemprop="http://yoursite.com/index.html">Docker容器的重启策略及docker run的--restart选项详解</a>
               
             
           </h1>
@@ -393,7 +393,7 @@
                 
               
 
-              <time title="Post created: 2018-12-18 09:55:21 / Updated at: 10:55:32" itemprop="dateCreated datePublished" datetime="2018-12-18T09:55:21+08:00">2018-12-18</time>
+              <time title="Post created: 2018-12-18 09:55:21 / Updated at: 11:03:24" itemprop="dateCreated datePublished" datetime="2018-12-18T09:55:21+08:00">2018-12-18</time>
             
 
             
@@ -433,7 +433,7 @@
       
         
           
-            <h1 id="Docker容器的重启策略及docker-run的–restart选项详解"><a href="#Docker容器的重启策略及docker-run的–restart选项详解" class="headerlink" title="Docker容器的重启策略及docker run的–restart选项详解"></a>Docker容器的重启策略及docker run的–restart选项详解</h1><h3 id="1-Docker容器的重启策略"><a href="#1-Docker容器的重启策略" class="headerlink" title="1. Docker容器的重启策略"></a>1. Docker容器的重启策略</h3><p>Docker容器的重启策略是面向生产环境的一个启动策略，在开发过程中可以忽略该策略。</p>
+            <h3 id="1-Docker容器的重启策略"><a href="#1-Docker容器的重启策略" class="headerlink" title="1. Docker容器的重启策略"></a>1. Docker容器的重启策略</h3><p>Docker容器的重启策略是面向生产环境的一个启动策略，在开发过程中可以忽略该策略。</p>
 <p>Docker容器的重启都是由Docker守护进程完成的，因此与守护进程息息相关。</p>
 <p>Docker容器的重启策略如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">no，默认策略，在容器退出时不重启容器</span><br><span class="line"></span><br><span class="line">on-failure，在容器非正常退出时（退出状态非0），才会重启容器</span><br><span class="line"></span><br><span class="line">on-failure:3，在容器非正常退出时重启容器，最多重启3次</span><br><span class="line"></span><br><span class="line">always，在容器退出时总是重启容器</span><br><span class="line"></span><br><span class="line">unless-stopped，在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器</span><br></pre></td></tr></table></figure>
