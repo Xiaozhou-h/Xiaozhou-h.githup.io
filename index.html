@@ -228,7 +228,58 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Beranda</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
 
   </li>
         
@@ -245,7 +296,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Arsip</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
 
   </li>
 
@@ -281,6 +332,158 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/Docker容器的重启攻略--restart/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/18/Docker容器的重启攻略--restart/" class="post-title-link" itemprop="http://yoursite.com/index.html">Unbenannt</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-12-18 09:55:21 / Updated at: 10:55:32" itemprop="dateCreated datePublished" datetime="2018-12-18T09:55:21+08:00">2018-12-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Docker容器的重启策略及docker-run的–restart选项详解"><a href="#Docker容器的重启策略及docker-run的–restart选项详解" class="headerlink" title="Docker容器的重启策略及docker run的–restart选项详解"></a>Docker容器的重启策略及docker run的–restart选项详解</h1><h3 id="1-Docker容器的重启策略"><a href="#1-Docker容器的重启策略" class="headerlink" title="1. Docker容器的重启策略"></a>1. Docker容器的重启策略</h3><p>Docker容器的重启策略是面向生产环境的一个启动策略，在开发过程中可以忽略该策略。</p>
+<p>Docker容器的重启都是由Docker守护进程完成的，因此与守护进程息息相关。</p>
+<p>Docker容器的重启策略如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">no，默认策略，在容器退出时不重启容器</span><br><span class="line"></span><br><span class="line">on-failure，在容器非正常退出时（退出状态非0），才会重启容器</span><br><span class="line"></span><br><span class="line">on-failure:3，在容器非正常退出时重启容器，最多重启3次</span><br><span class="line"></span><br><span class="line">always，在容器退出时总是重启容器</span><br><span class="line"></span><br><span class="line">unless-stopped，在容器退出时总是重启容器，但是不考虑在Docker守护进程启动时就已经停止了的容器</span><br></pre></td></tr></table></figure>
+<h3 id="2-Docker容器的退出状态码"><a href="#2-Docker容器的退出状态码" class="headerlink" title="2. Docker容器的退出状态码"></a>2. Docker容器的退出状态码</h3><p>  docker run的退出状态码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0，表示正常退出</span><br><span class="line">非0，表示异常退出（退出状态码采用chroot标准）</span><br><span class="line">125，Docker守护进程本身的错误</span><br><span class="line">126，容器启动后，要执行的默认命令无法调用</span><br><span class="line">127，容器启动后，要执行的默认命令不存在</span><br><span class="line">其他命令状态码，容器启动后正常执行命令，退出命令时该命令的返回状态码作为容器的退出状态码</span><br></pre></td></tr></table></figure>
+<h3 id="3-docker-run的–restart选项"><a href="#3-docker-run的–restart选项" class="headerlink" title="3. docker run的–restart选项"></a>3. docker run的–restart选项</h3><p>  通过–restart选项，可以设置容器的重启策略，以决定在容器退出时Docker守护进程是否重启刚刚退出的容器。<br>  通常只用于detached模式的容器。</p>
+<p>–restart选项不能与–rm选项同时使用。显然，–restart选项适用于detached模式的容器，而–rm选项适用于foreground模式的容器。</p>
+<p>在docker ps查看容器时，对于使用了–restart选项的容器，其可能的状态只有Up或Restarting两种状态。</p>
+<p>示例：<br>docker run -d –restart=always bba-208<br>docker run -d –restart=on-failure:10 bba-208</p>
+<p>原文：<a href="https://blog.csdn.net/taiyangdao/article/details/73076019" target="_blank" rel="noopener">https://blog.csdn.net/taiyangdao/article/details/73076019</a> </p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -335,7 +538,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Diposting di</span>
+                <span class="post-meta-item-text">Veröffentlicht am</span>
               
 
               
@@ -583,8 +786,8 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">posting</span>
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
               
@@ -659,7 +862,7 @@
 
 
 
-  <div class="theme-info">Tema – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
 
 
 
