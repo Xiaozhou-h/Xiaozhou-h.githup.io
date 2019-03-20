@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1、docker日志太多导致磁盘沾满问题 12345清空日志：cat /dev/null &amp;gt; /var/lib/docker/containers/container_id/container_log_name如下命令会清空对应的日志,如:[root@docker ~]# cat /dev/null &amp;gt; /var/lib/docker/containers/374aa0ba92b37d">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker排错">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/Docker排错/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、docker日志太多导致磁盘沾满问题 12345清空日志：cat /dev/null &amp;gt; /var/lib/docker/containers/container_id/container_log_name如下命令会清空对应的日志,如:[root@docker ~]# cat /dev/null &amp;gt; /var/lib/docker/containers/374aa0ba92b37d">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-26T01:48:30.892Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker排错">
+<meta name="twitter:description" content="1、docker日志太多导致磁盘沾满问题 12345清空日志：cat /dev/null &amp;gt; /var/lib/docker/containers/container_id/container_log_name如下命令会清空对应的日志,如:[root@docker ~]# cat /dev/null &amp;gt; /var/lib/docker/containers/374aa0ba92b37d">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/Docker排错/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Docker排错 | Hexo</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/Docker排错/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Docker排错
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2018-12-18 09:55:21" itemprop="dateCreated datePublished" datetime="2018-12-18T09:55:21+08:00">2018-12-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2019-02-26 09:48:30" itemprop="dateModified" datetime="2019-02-26T09:48:30+08:00">2019-02-26</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/12/18/Docker排错/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/18/Docker排错/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>1、docker日志太多导致磁盘沾满问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">清空日志：cat /dev/null &gt; /var/lib/docker/containers/container_id/container_log_name</span><br><span class="line"></span><br><span class="line">如下命令会清空对应的日志,如:</span><br><span class="line"></span><br><span class="line">[root@docker ~]<span class="comment"># cat /dev/null &gt; /var/lib/docker/containers/374aa0ba92b37d829012282ff15c1bb838d95dedb54589874c4285991be2d4aa/374aa0ba92b37d829012282ff15c1bb838d95dedb54589874c4285991be2d4aa-json.log</span></span><br></pre></td></tr></table></figure>
+<p>2、Dockerfile构建镜像语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.FROM 基础镜像</span><br><span class="line"></span><br><span class="line">2.MAINTAIN 作者信息</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">3.RUN 命令(该命令是运行在安装软件时,在基础镜像上面运行的命令)</span><br><span class="line"></span><br><span class="line">4.CMD 命令(启动容器时运行的命令,如果文件最后添加了ENTRYPOINT 命令,则该命令会被覆盖)</span><br><span class="line"></span><br><span class="line">5.USED 用户(设置容器操作用户)</span><br><span class="line"></span><br><span class="line">6.EXPOSE 端口(容器向外暴露的端口)</span><br><span class="line"></span><br><span class="line">7.ENV 环境变量(设置容器内环境变量)</span><br><span class="line"></span><br><span class="line">8.ADD 文件(添加文件)</span><br><span class="line"></span><br><span class="line">9.VOLUME 目录(挂在宿主机目录)</span><br><span class="line"></span><br><span class="line">10.WORKDIR 目录(工作目录)</span><br><span class="line"></span><br><span class="line">dockerfile里面所设置的这些内容实际上基本上都可以在容器启动时设定,但是想要做成一个成熟的镜像还是有比要把这些基础设置填写完全.</span><br></pre></td></tr></table></figure>
+<p>3、docker-compose构建容器语法</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br></pre></td><td class="code"><pre><span class="line">build</span><br><span class="line">指定 Dockerfile 所在文件夹的路径。 Compose 将会利用它自动构建这个镜像，然后使用这个镜像。</span><br><span class="line">build: /path/to/build/dir</span><br><span class="line"></span><br><span class="line"><span class="built_in">command</span></span><br><span class="line">覆盖容器启动后默认执行的命令。</span><br><span class="line"><span class="built_in">command</span>: bundle <span class="built_in">exec</span> thin -p 3000</span><br><span class="line"></span><br><span class="line">links</span><br><span class="line">链接到其它服务中的容器。使用服务名称（同时作为别名）或服务名称：服务别名 （SERVICE:ALIAS） 格式都可以。</span><br><span class="line">links:</span><br><span class="line">– db</span><br><span class="line">– db:database</span><br><span class="line">– redis</span><br><span class="line">使用的别名将会自动在服务容器中的 /etc/hosts 里创建。例如：</span><br><span class="line">172.17.2.186 db</span><br><span class="line">相应的环境变量也将被创建。</span><br><span class="line"></span><br><span class="line">external_links</span><br><span class="line">链接到 docker-compose.yml 外部的容器，甚至 并非 Compose 管理的容器。参数格式跟 links 类似。</span><br><span class="line">external_links:</span><br><span class="line">– redis_1</span><br><span class="line">– project_db_1:mysql</span><br><span class="line">– project_db_1:postgresql</span><br><span class="line"></span><br><span class="line">ports</span><br><span class="line">暴露端口信息。</span><br><span class="line">使用宿主：容器 （HOST:CONTAINER）格式或者仅仅指定容器的端口（宿主将会随机选择端口）都可以。</span><br><span class="line"></span><br><span class="line">ports:</span><br><span class="line">– “3000”</span><br><span class="line">– “8000:8000″</span><br><span class="line">– “127.0.0.1:8001:8001″</span><br><span class="line">注：当使用 HOST:CONTAINER 格式来映射端口时，如果你使用的容器端口小于 60 你可能会得到错误得结果，因为 YAML 将会解析 xx:yy 这种数字格式为 60 进制。所以建议采用字符串格式。</span><br><span class="line"></span><br><span class="line">expose</span><br><span class="line">暴露端口，但不映射到宿主机，只被连接的服务访问。</span><br><span class="line">仅可以指定内部端口为参数</span><br><span class="line">expose:</span><br><span class="line">– “3000”</span><br><span class="line">– “8000”</span><br><span class="line"></span><br><span class="line">volumes</span><br><span class="line">卷挂载路径设置。可以设置宿主机路径 （HOST:CONTAINER） 或加上访问模式 （HOST:CONTAINER:ro）。</span><br><span class="line">volumes:</span><br><span class="line">– /var/lib/mysql</span><br><span class="line">– cache/:/tmp/cache</span><br><span class="line">– ~/configs:/etc/configs/:ro</span><br><span class="line"></span><br><span class="line">volumes_from</span><br><span class="line">从另一个服务或容器挂载它的所有卷。</span><br><span class="line">volumes_from:</span><br><span class="line">– service_name</span><br><span class="line">– container_name</span><br><span class="line"></span><br><span class="line">environment</span><br><span class="line">设置环境变量。你可以使用数组或字典两种格式。</span><br><span class="line">只给定名称的变量会自动获取它在 Compose 主机上的值，可以用来防止泄露不必要的数据。</span><br><span class="line">environment:</span><br><span class="line">– RACK_ENV=development</span><br><span class="line">– SESSION_SECRET</span><br><span class="line"></span><br><span class="line">env_file</span><br><span class="line">从文件中获取环境变量，可以为单独的文件路径或列表。</span><br><span class="line">如果通过 docker-compose -f FILE 指定了模板文件，则 env_file 中路径会基于模板文件路径。</span><br><span class="line">如果有变量名称与 environment 指令冲突，则以后者为准。</span><br><span class="line">env_file: .env</span><br><span class="line">env_file:</span><br><span class="line">– ./common.env</span><br><span class="line">– ./apps/web.env</span><br><span class="line">– /opt/secrets.env</span><br><span class="line">环境变量文件中每一行必须符合格式，支持 <span class="comment"># 开头的注释行。</span></span><br><span class="line"><span class="comment"># common.env: Set Rails/Rack environment</span></span><br><span class="line">RACK_ENV=development</span><br><span class="line"></span><br><span class="line">extends</span><br><span class="line">基于已有的服务进行扩展。例如我们已经有了一个 webapp 服务，模板文件为 common.yml。</span><br><span class="line"><span class="comment"># common.yml</span></span><br><span class="line">webapp:</span><br><span class="line">build: ./webapp</span><br><span class="line">environment:</span><br><span class="line">– DEBUG=<span class="literal">false</span></span><br><span class="line">– SEND_EMAILS=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line">development.yml</span><br><span class="line">web:</span><br><span class="line">extends:</span><br><span class="line">file: common.yml</span><br><span class="line">service: webapp</span><br><span class="line">ports:</span><br><span class="line"> - <span class="string">"8000:8000"</span></span><br><span class="line">links:</span><br><span class="line">  - db</span><br><span class="line">environment:</span><br><span class="line">- DEBUG=<span class="literal">true</span></span><br><span class="line">db:</span><br><span class="line">image: postgres</span><br><span class="line">后者会自动继承 common.yml 中的 webapp 服务及相关环节变量。</span><br><span class="line"></span><br><span class="line">net</span><br><span class="line">设置网络模式。使用和 docker client 的 --net 参数一样的值。</span><br><span class="line">net: <span class="string">"bridge"</span></span><br><span class="line">net: <span class="string">"none"</span></span><br><span class="line">net: <span class="string">"container:[name or id]"</span></span><br><span class="line">net: <span class="string">"host"</span></span><br><span class="line"></span><br><span class="line">pid</span><br><span class="line">跟主机系统共享进程命名空间。打开该选项的容器可以相互通过进程 ID 来访问和操作。</span><br><span class="line">pid: <span class="string">"host"</span></span><br><span class="line"></span><br><span class="line">dns</span><br><span class="line">配置 DNS 服务器。可以是一个值，也可以是一个列表。</span><br><span class="line">dns: 8.8.8.8</span><br><span class="line">dns:</span><br><span class="line">- 8.8.8.8</span><br><span class="line">- 9.9.9.9</span><br><span class="line"></span><br><span class="line">cap_add, cap_drop</span><br><span class="line">添加或放弃容器的 Linux 能力（Capabiliity）。</span><br><span class="line">cap_add:</span><br><span class="line">- ALL</span><br><span class="line">cap_drop:</span><br><span class="line">- NET_ADMIN</span><br><span class="line">- SYS_ADMIN</span><br><span class="line"></span><br><span class="line">dns_search</span><br><span class="line">配置 DNS 搜索域。可以是一个值，也可以是一个列表。</span><br><span class="line">dns_search: example.com</span><br><span class="line">dns_search:</span><br><span class="line">- domain1.example.com</span><br><span class="line"> - domain2.example.com</span><br><span class="line">working_dir, entrypoint, user, hostname, domainname, mem_limit, privileged, restart, stdin_open, tty, cpu_shares</span><br><span class="line">这些都是和 docker run 支持的选项类似。</span><br><span class="line">cpu_shares: 73</span><br><span class="line">working_dir: /code</span><br><span class="line">entrypoint: /code/entrypoint.sh</span><br><span class="line">user: postgresql</span><br><span class="line">hostname: foo</span><br><span class="line">domainname: foo.com</span><br><span class="line">mem_limit: 1000000000</span><br><span class="line">privileged: <span class="literal">true</span></span><br><span class="line">restart: always</span><br><span class="line">stdin_open: <span class="literal">true</span></span><br><span class="line">tty: <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>4、docker的web端是部署在NGINX上的，而NGINX可能会报错</p>
+<p>upstream wei {<br>    server 192.168.188.10:81;<br>    server 192.168.188.20:82;<br>}<br>  server {<br>    Listen 80;<br>    server_name 192.168.188.10;<br>    localhost / {<br>    proxy_pass <a href="http://wei" target="_blank" rel="noopener">http://wei</a><br>}<br>}</p>
+<p>5、docker平台启动失败,平台有问题，查状态(systemctl status docker)改配置</p>
+<p>6、容器故障可通过查看容器日志，确定错误信息，然后进入容器根据配置信息对其配置文件进行更改。</p>
+<p>7、镜像错误。</p>
+<p>9、网络错误。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/02/博客搭建/" rel="next" title="利用hexo搭建简单的博客">
+                <i class="fa fa-chevron-left"></i> 利用hexo搭建简单的博客
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/25/微信小程序/" rel="prev" title="微信小程序">
+                微信小程序 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/admin.png" alt="John Doe">
+            
+              <p class="site-author-name" itemprop="name">John Doe</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+  
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: '',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'ce717dc71ef58f203a5b0568467853963e7f7d7c',
+            
+                client_id: '9c5db405241643bb346f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" color="123,143,200" opacity="0.7" zindex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	
+</body>
+</html>
