@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="小周的博客">
 <meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-14T04:14:18.542Z">
+<meta property="og:updated_time" content="2020-11-14T04:23:42.886Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
 <meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-14 12:14:18" itemprop="dateModified" datetime="2020-11-14T12:14:18+08:00">2020-11-14</time>
+                <time title="Updated at: 2020-11-14 12:23:42" itemprop="dateModified" datetime="2020-11-14T12:23:42+08:00">2020-11-14</time>
               
             
           </span>
@@ -465,7 +465,7 @@
 </blockquote>
 <h4 id="3-正式安装python3，和pip3"><a href="#3-正式安装python3，和pip3" class="headerlink" title="3.正式安装python3，和pip3"></a>3.正式安装python3，和pip3</h4><blockquote>
 <p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code>  # 下载3.6版本的python,千万不要下3.7，3.7不兼容pip3!!!</p>
-<p><code>tar zxvf Python-3.6.0.tgz #解压到当前文件压</code></p>
+<p><code>tar zxvf Python-3.6.0.tgz</code>     #解压到当前文件压  </p>
 <p><code>cd Python-3.6.0</code># 进入文件夹</p>
 <p><code>./configure --prefix=/etc/python/python3.6</code>       # 安装到/etc/python/python3.6  </p>
 <p><code>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</code>   #安装依赖包确保pip的时候不会有出错 </p>
