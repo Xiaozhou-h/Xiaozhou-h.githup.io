@@ -348,6 +348,171 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/13/Linux更换阿里源及安装pip3/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小周的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/11/13/Linux更换阿里源及安装pip3/" class="post-title-link" itemprop="http://yoursite.com/index.html">Linux更换阿里源及安装pip3</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2020-11-13 23:28:50" itemprop="dateCreated datePublished" datetime="2020-11-13T23:28:50+08:00">2020-11-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-11-14 12:19:35" itemprop="dateModified" datetime="2020-11-14T12:19:35+08:00">2020-11-14</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.换源
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup 
+备份原有的源
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.al
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/11/13/Linux更换阿里源及安装pip3/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/12/Django在Linux上部署/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -393,12 +558,24 @@
                 
               
 
-              <time title="Post created: 2020-11-12 08:37:33 / Updated at: 09:39:38" itemprop="dateCreated datePublished" datetime="2020-11-12T08:37:33+08:00">2020-11-12</time>
+              <time title="Post created: 2020-11-12 08:37:33" itemprop="dateCreated datePublished" datetime="2020-11-12T08:37:33+08:00">2020-11-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-11-14 12:14:18" itemprop="dateModified" datetime="2020-11-14T12:14:18+08:00">2020-11-14</time>
               
             
           </span>
@@ -433,13 +610,13 @@
       
         
           
-          1.一个完整的Linux系统此处略2.安装python
-// 安装Linux的wget工具，用于在网上下载文件
-yum -y installl wget
-// GCC编译器环境，安装python 3 时所需的编译环境
-yum -y install gcc
-// Python 3 使用的依赖组件
-yu
+          一.一个完整的Linux系统此处略
+可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器
+
+二.安装python1.安装Linux的wget工具，用于在网上下载文件
+yum -y installl wget  (如果使用的是云服务器这一步可省去)
+
+2. GCC编译器环境，安装python 
           ...
           <!--noindex-->
           
@@ -1529,7 +1706,7 @@ File-&gt;Settings-&gt
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
@@ -1552,7 +1729,9 @@ File-&gt;Settings-&gt
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">Tags</span>
                   
                 </div>

@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="1.一个完整的Linux系统此处略2.安装python // 安装Linux的wget工具，用于在网上下载文件 yum -y installl wget // GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc // Python 3 使用的依赖组件 yum install openssl-devel bzip2-devel expat-develgdb">
+  <meta name="description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
 <meta name="keywords" content="Linux上部署Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django在Linux上部署">
 <meta property="og:url" content="http://yoursite.com/2020/11/12/Django在Linux上部署/index.html">
 <meta property="og:site_name" content="小周的博客">
-<meta property="og:description" content="1.一个完整的Linux系统此处略2.安装python // 安装Linux的wget工具，用于在网上下载文件 yum -y installl wget // GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc // Python 3 使用的依赖组件 yum install openssl-devel bzip2-devel expat-develgdb">
+<meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-12T01:39:38.252Z">
+<meta property="og:updated_time" content="2020-11-14T04:14:18.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
-<meta name="twitter:description" content="1.一个完整的Linux系统此处略2.安装python // 安装Linux的wget工具，用于在网上下载文件 yum -y installl wget // GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc // Python 3 使用的依赖组件 yum install openssl-devel bzip2-devel expat-develgdb">
+<meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
 
 
 
@@ -394,12 +394,24 @@
                 
               
 
-              <time title="Post created: 2020-11-12 08:37:33 / Updated at: 09:39:38" itemprop="dateCreated datePublished" datetime="2020-11-12T08:37:33+08:00">2020-11-12</time>
+              <time title="Post created: 2020-11-12 08:37:33" itemprop="dateCreated datePublished" datetime="2020-11-12T08:37:33+08:00">2020-11-12</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-11-14 12:14:18" itemprop="dateModified" datetime="2020-11-14T12:14:18+08:00">2020-11-14</time>
               
             
           </span>
@@ -442,23 +454,28 @@
       
 
       
-        <h3 id="1-一个完整的Linux系统此处略"><a href="#1-一个完整的Linux系统此处略" class="headerlink" title="1.一个完整的Linux系统此处略"></a>1.一个完整的Linux系统此处略</h3><h3 id="2-安装python"><a href="#2-安装python" class="headerlink" title="2.安装python"></a>2.安装python</h3><blockquote>
-<p>// 安装Linux的wget工具，用于在网上下载文件</p>
-<p>yum -y installl wget</p>
-<p>// GCC编译器环境，安装python 3 时所需的编译环境</p>
-<p>yum -y install gcc</p>
-<p>// Python 3 使用的依赖组件</p>
-<p>yum install openssl-devel bzip2-devel expat-develgdbm-devel</p>
-<p>yum install readline-develsqlite*-develmysql-devellibffi-devel</p>
-<p>// 正式安装python（因为是从官网下载，所以会比较慢）</p>
-<p>wget “<a href="https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz&quot;" target="_blank" rel="noopener">https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tgz&quot;</a></p>
-<p>// 解压Python-3.7.3.tgz，并进入python-3.7.3文件夹</p>
-<p>tar -zxvf Python-3.7.3.tgz</p>
-<p>cd Python-3.7.3</p>
-<p>// 依次输入编译指令，并进入python</p>
-<p>sudo ./configure   或者   ./configure –enable-optimizations</p>
-<p>sudomake  sudomake install  (感觉没啥用)</p>
-<p>[root@iZbp18qtvejt7jzoxeum61Z ~]# python<br>Python 2.7.5 (default, Jul 13 2018, 13:06:57)<br>[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux2<br>Type “help”, “copyright”, “credits” or “license” for more information.</p>
+        <h3 id="一-一个完整的Linux系统此处略"><a href="#一-一个完整的Linux系统此处略" class="headerlink" title="一.一个完整的Linux系统此处略"></a>一.一个完整的Linux系统此处略</h3><blockquote>
+<p>可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器</p>
+</blockquote>
+<h3 id="二-安装python"><a href="#二-安装python" class="headerlink" title="二.安装python"></a>二.安装python</h3><h4 id="1-安装Linux的wget工具，用于在网上下载文件"><a href="#1-安装Linux的wget工具，用于在网上下载文件" class="headerlink" title="1.安装Linux的wget工具，用于在网上下载文件"></a>1.安装Linux的wget工具，用于在网上下载文件</h4><blockquote>
+<p>yum -y installl wget  (如果使用的是云服务器这一步可省去)</p>
+</blockquote>
+<h4 id="2-GCC编译器环境，安装python-3-时所需的编译环境"><a href="#2-GCC编译器环境，安装python-3-时所需的编译环境" class="headerlink" title="2. GCC编译器环境，安装python 3 时所需的编译环境"></a>2. GCC编译器环境，安装python 3 时所需的编译环境</h4><blockquote>
+<p>yum -y install gcc   (如果使用的是云服务器这一步可省去)</p>
+</blockquote>
+<h4 id="3-正式安装python3，和pip3"><a href="#3-正式安装python3，和pip3" class="headerlink" title="3.正式安装python3，和pip3"></a>3.正式安装python3，和pip3</h4><blockquote>
+<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code>  # 下载3.6版本的python,千万不要下3.7，3.7不兼容pip3!!!</p>
+<p><code>tar zxvf Python-3.6.0.tgz #解压到当前文件压</code></p>
+<p><code>cd Python-3.6.0</code># 进入文件夹</p>
+<p><code>./configure --prefix=/etc/python/python3.6</code>       # 安装到/etc/python/python3.6  </p>
+<p><code>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</code>   #安装依赖包确保pip的时候不会有出错 </p>
+<p><code>make &amp;&amp; make install</code></p>
+<p><code>ln -s /etc/python/python3.6/bin/python3.6 /usr/bin/python3</code>     # 建立python3的软连接</p>
+<p><code>ln -s /etc/python/python3.6/bin/pip3.6 /usr/bin/pip3</code>    # 建立pip3的软连接</p>
+<p><code>pip3 list</code> 查看pip3安装版本  <code>python3 -V</code>  查看python3安装版本</p>
+</blockquote>
+<h3 id="三-部署uWSGI服务器"><a href="#三-部署uWSGI服务器" class="headerlink" title="三.部署uWSGI服务器"></a>三.部署uWSGI服务器</h3><h4 id="1-在部署uWSGI前先在Linux中安装相应的模块"><a href="#1-在部署uWSGI前先在Linux中安装相应的模块" class="headerlink" title="1.在部署uWSGI前先在Linux中安装相应的模块"></a>1.在部署uWSGI前先在Linux中安装相应的模块</h4><blockquote>
+<p>先安装pip3</p>
 </blockquote>
 
       
@@ -505,6 +522,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/11/13/Linux更换阿里源及安装pip3/" rel="prev" title="Linux更换阿里源及安装pip3">
+                Linux更换阿里源及安装pip3 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -585,7 +606,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">8</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
@@ -608,7 +629,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">Tags</span>
                   
                 </div>
@@ -657,7 +680,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">1.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装python"><span class="nav-number">2.</span> <span class="nav-text">2.安装python</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">一.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装python"><span class="nav-number">2.</span> <span class="nav-text">二.安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-部署uWSGI服务器"><span class="nav-number">3.</span> <span class="nav-text">三.部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">3.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li></ol></li></ol></div>
             
 
           </div>
