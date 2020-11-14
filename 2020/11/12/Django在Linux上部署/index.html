@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="小周的博客">
 <meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-14T14:01:23.779Z">
+<meta property="og:updated_time" content="2020-11-14T14:03:42.783Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
 <meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-14 22:01:23" itemprop="dateModified" datetime="2020-11-14T22:01:23+08:00">2020-11-14</time>
+                <time title="Updated at: 2020-11-14 22:03:42" itemprop="dateModified" datetime="2020-11-14T22:03:42+08:00">2020-11-14</time>
               
             
           </span>
@@ -499,8 +499,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -ntlp    查看端口号</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="6-测试uWSGI是否能正常运行"><a href="#6-测试uWSGI是否能正常运行" class="headerlink" title="6.测试uWSGI是否能正常运行"></a>6.测试uWSGI是否能正常运行</h4><blockquote>
-<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT      #开放端口:8080</p>
-<p>uwsgi –http :80 –chdir /root/music -w music.wsgi </p>
+<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT      #开放端口:80</p>
+<p>uwsgi –http :80 –chdir /root/music -w music.wsgi    浏览器输入对应的公网ip和端口号</p>
 </blockquote>
 <h4 id="7-UWSGI配置文件"><a href="#7-UWSGI配置文件" class="headerlink" title="7.UWSGI配置文件"></a>7.UWSGI配置文件</h4><blockquote>
 <p>[root@zhou ~]# cd music</p>
@@ -511,7 +511,7 @@
 <p>[root@zhou ~]# rpm -ivh <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a>        下载nginx源</p>
 <p>[root@zhou ~]# yum install nginx        安装nginx</p>
 <blockquote>
-<p>可输入<code>systemctl start nginx</code>启动nginx,查看是否能正常访问</p>
+<p>可输入<code>systemctl start nginx</code>启动nginx,查看是否能正常访问  浏览器输入对应的公网ip和端口号</p>
 </blockquote>
 </blockquote>
 <h4 id="9-配置nginx文件"><a href="#9-配置nginx文件" class="headerlink" title="9.配置nginx文件"></a>9.配置nginx文件</h4><blockquote>
