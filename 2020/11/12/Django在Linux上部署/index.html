@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
+  <meta name="description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc     3.正式安装python3，和p">
 <meta name="keywords" content="Linux上部署Django">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django在Linux上部署">
 <meta property="og:url" content="http://yoursite.com/2020/11/12/Django在Linux上部署/index.html">
 <meta property="og:site_name" content="小周的博客">
-<meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
+<meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc     3.正式安装python3，和p">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-14T14:03:42.783Z">
+<meta property="og:updated_time" content="2020-11-15T08:52:19.113Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
-<meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc   (如果使用的是云服务器这一步可省去)">
+<meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc     3.正式安装python3，和p">
 
 
 
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-14 22:03:42" itemprop="dateModified" datetime="2020-11-14T22:03:42+08:00">2020-11-14</time>
+                <time title="Updated at: 2020-11-15 16:52:19" itemprop="dateModified" datetime="2020-11-15T16:52:19+08:00">2020-11-15</time>
               
             
           </span>
@@ -461,17 +461,18 @@
 <p>yum -y installl wget  (如果使用的是云服务器这一步可省去)</p>
 </blockquote>
 <h4 id="2-GCC编译器环境，安装python-3-时所需的编译环境"><a href="#2-GCC编译器环境，安装python-3-时所需的编译环境" class="headerlink" title="2. GCC编译器环境，安装python 3 时所需的编译环境"></a>2. GCC编译器环境，安装python 3 时所需的编译环境</h4><blockquote>
-<p>yum -y install gcc   (如果使用的是云服务器这一步可省去)</p>
+<p>yum -y install gcc   </p>
 </blockquote>
 <h4 id="3-正式安装python3，和pip3"><a href="#3-正式安装python3，和pip3" class="headerlink" title="3.正式安装python3，和pip3"></a>3.正式安装python3，和pip3</h4><blockquote>
-<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code>  # 下载3.6版本的python,千万不要下3.7，3.7不兼容pip3!!!</p>
+<p><code>wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz</code>  </p>
 <p><code>tar zxvf Python-3.6.0.tgz</code>     #解压到当前文件压  </p>
 <p><code>cd Python-3.6.0</code># 进入文件夹</p>
 <p><code>./configure --prefix=/etc/python/python3.6</code>       # 安装到/etc/python/python3.6  </p>
-<p><code>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel db4-devel libpcap-devel xz-devel</code>   #安装依赖包确保pip的时候不会有出错 </p>
+<p><code>yum -y install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gdbm-devel libffi-devel db4-devel libpcap-devel xz-devel</code>   #安装依赖包确保pip的时候不会有出错 </p>
 <p><code>make &amp;&amp; make install</code></p>
 <p><code>ln -s /etc/python/python3.6/bin/python3.6 /usr/bin/python3</code>     # 建立python3的软连接</p>
 <p><code>ln -s /etc/python/python3.6/bin/pip3.6 /usr/bin/pip3</code>    # 建立pip3的软连接</p>
+<p><code>ln -s /etc/python/python3.7/bin/uwsgi /usr/bin/uwsgi</code>   #建立uwsgi的软连接</p>
 <p><code>pip3 list</code> 查看pip3安装版本  <code>python3 -V</code>  查看python3安装版本</p>
 </blockquote>
 <h3 id="三-部署uWSGI服务器"><a href="#三-部署uWSGI服务器" class="headerlink" title="三.部署uWSGI服务器"></a>三.部署uWSGI服务器</h3><h4 id="1-在部署uWSGI前先在Linux中安装相应的模块"><a href="#1-在部署uWSGI前先在Linux中安装相应的模块" class="headerlink" title="1.在部署uWSGI前先在Linux中安装相应的模块"></a>1.在部署uWSGI前先在Linux中安装相应的模块</h4><blockquote>
@@ -481,7 +482,7 @@
 </blockquote>
 <h4 id="2-安装mysql并设置密码"><a href="#2-安装mysql并设置密码" class="headerlink" title="2.安装mysql并设置密码"></a>2.安装mysql并设置密码</h4><p><a href="https://xiaozhou.top/2020/11/14/Linux安装Mysql设置初始密码/#more" target="_blank" rel="noopener">安装mysql并设置密码</a></p>
 <h4 id="3-修改项目配置文件settings-py"><a href="#3-修改项目配置文件settings-py" class="headerlink" title="3.修改项目配置文件settings.py"></a>3.修改项目配置文件settings.py</h4><blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; # 设置数据库连接信息</span><br><span class="line">&gt; DATABASES = &#123;</span><br><span class="line">&gt;     &apos;default&apos;: &#123;</span><br><span class="line">&gt;         &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">&gt;         &apos;NAME&apos;: &apos;music_db&apos;,</span><br><span class="line">&gt;         &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">&gt;         &apos;PASSWORD&apos;: &apos;123456&apos;,</span><br><span class="line">&gt;         &apos;HOST&apos;: &apos;127.0.0.1&apos;,</span><br><span class="line">&gt;         &apos;PORT&apos;: &apos;3306&apos;,</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; `与数据库信息一致`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt; # 设置数据库连接信息</span><br><span class="line">&gt; DATABASES = &#123;</span><br><span class="line">&gt;     &apos;default&apos;: &#123;</span><br><span class="line">&gt;         &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,</span><br><span class="line">&gt;         &apos;NAME&apos;: &apos;music_db&apos;,</span><br><span class="line">&gt;         &apos;USER&apos;: &apos;root&apos;,</span><br><span class="line">&gt;         &apos;PASSWORD&apos;: &apos;123456&apos;,</span><br><span class="line">&gt;         &apos;HOST&apos;: &apos;116.62.155.141&apos;,</span><br><span class="line">&gt;         &apos;PORT&apos;: &apos;3306&apos;,</span><br><span class="line">&gt;     &#125;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; `与数据库信息一致`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="4-项目文件的上传"><a href="#4-项目文件的上传" class="headerlink" title="4.项目文件的上传"></a>4.项目文件的上传</h4><blockquote>
 <p>通过SecureFXPortable软件上传项目文件和数据库文件</p>
@@ -498,26 +499,29 @@
 <p>[root@zhou ~]# ifconfig    （查看IP地址）<br>eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500<br>        inet 172.26.220.22  netmask 255.255.240.0  broadcast 172.26.223.255<br>        ether 00:16:3e:01:24:26  txqueuelen 1000  (Ethernet)<br>        RX packets 1494  bytes 378058 (369.1 KiB)<br>        RX errors 0  dropped 0  overruns 0  frame 0<br>        TX packets 1589  bytes 254523 (248.5 KiB)<br>        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; netstat -ntlp    查看端口号</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="6-测试uWSGI是否能正常运行"><a href="#6-测试uWSGI是否能正常运行" class="headerlink" title="6.测试uWSGI是否能正常运行"></a>6.测试uWSGI是否能正常运行</h4><blockquote>
-<p>/sbin/iptables -I INPUT -p tcp –dport 80 -j ACCEPT      #开放端口:80</p>
-<p>uwsgi –http :80 –chdir /root/music -w music.wsgi    浏览器输入对应的公网ip和端口号</p>
+<h4 id="6-测试uWSGI是否能正常运行"><a href="#6-测试uWSGI是否能正常运行" class="headerlink" title="6.测试uWSGI是否能正常运行"></a>6.测试uWSGI是否能正常运行</h4><p><a href="http://xiaozhou.top" target="_blank" rel="noopener">项目bug调试</a></p>
+<blockquote>
+<p>uwsgi –http :8080 –chdir /root/music -w music.wsgi    浏览器输入对应的公网ip和端口号</p>
 </blockquote>
 <h4 id="7-UWSGI配置文件"><a href="#7-UWSGI配置文件" class="headerlink" title="7.UWSGI配置文件"></a>7.UWSGI配置文件</h4><blockquote>
 <p>[root@zhou ~]# cd music</p>
-<p>[root@zhou music]# vi music_uwsgi.ini<br>socket=:80<br>chdir=/root/music<br>module=music.wsgi<br>master=true<br>processes=4<br>vacuum=true</p>
+<p>[root@zhou music]# vi music_uwsgi.ini</p>
+<p>[uwsgi]</p>
+<p>socket= :8080<br>chdir=/root/music<br>module=music.wsgi<br>master=true<br>processes=4<br>vacuum=true</p>
+<p>logto = /tmp/mylog.log</p>
 <p>[root@zhou music]# uwsgi –ini music_uwsgi.ini     启动uwsgi服务器</p>
 </blockquote>
-<h4 id="8-安装Nginx"><a href="#8-安装Nginx" class="headerlink" title="8.安装Nginx"></a>8.安装Nginx</h4><blockquote>
+<h3 id="四-安装Nginx"><a href="#四-安装Nginx" class="headerlink" title="四.安装Nginx"></a>四.安装Nginx</h3><blockquote>
 <p>[root@zhou ~]# rpm -ivh <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a>        下载nginx源</p>
 <p>[root@zhou ~]# yum install nginx        安装nginx</p>
 <blockquote>
 <p>可输入<code>systemctl start nginx</code>启动nginx,查看是否能正常访问  浏览器输入对应的公网ip和端口号</p>
 </blockquote>
 </blockquote>
-<h4 id="9-配置nginx文件"><a href="#9-配置nginx文件" class="headerlink" title="9.配置nginx文件"></a>9.配置nginx文件</h4><blockquote>
+<h4 id="1-配置nginx文件"><a href="#1-配置nginx文件" class="headerlink" title="1.配置nginx文件"></a>1.配置nginx文件</h4><blockquote>
 <p>[root@zhou ~]# cd /etc/nginx/conf.d/<br>[root@zhou conf.d]# vi music.conf</p>
 <p>#设置项目music的Nginx服务器配置</p>
-<p>server {<br>   listen 22;<br>   server_name 127.0.0.1;<br>   charset utf-8;</p>
+<p>server {<br>   listen 8090;<br>   server_name 127.0.0.1;<br>   charset utf-8;</p>
 <p>   client_max_body_size 75M;</p>
 <p>#配置媒体资源文件</p>
 <p>   location /media {<br>     expires 30d;<br>     autoindex on;<br>     add_header Cache-Control private;<br>     alias /root/music/media/;<br>   }    </p>
@@ -526,12 +530,17 @@
 <p>#配置uWSGI服务器</p>
 <p>   location / {<br>      include uwsgi_params;<br>      uwsgi_pass 127.0.0.1:8080;<br>      uwsgi_read_timeout 2;<br>   }<br>}</p>
 </blockquote>
-<h4 id="10-启动项目"><a href="#10-启动项目" class="headerlink" title="10.启动项目"></a>10.启动项目</h4><blockquote>
+<h4 id="2-启动项目"><a href="#2-启动项目" class="headerlink" title="2.启动项目"></a>2.启动项目</h4><blockquote>
 <p>[root@zhou conf.d]# cd /etc/nginx/</p>
 <p>[root@zhou nginx]# sudo nginx -cnginx.conf</p>
 <p>[root@zhou nginx]# sudo nginx -s reload</p>
 <p>[root@zhou nginx]# cd /root/music</p>
 <p>[root@zhou music]# uwsgi –ini music_uwsgi.ini</p>
+</blockquote>
+<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><blockquote>
+<p>ps aux | grep uwsgi</p>
+<p>kill -9 pid   杀进程</p>
+<p>shutdown -r now   立刻重启</p>
 </blockquote>
 
       
@@ -662,7 +671,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">Artikel</span>
                   </a>
                 </div>
@@ -689,7 +698,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">Tags</span>
                   
                 </div>
@@ -738,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">一.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装python"><span class="nav-number">2.</span> <span class="nav-text">二.安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-部署uWSGI服务器"><span class="nav-number">3.</span> <span class="nav-text">三.部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">3.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装mysql并设置密码"><span class="nav-number">3.2.</span> <span class="nav-text">2.安装mysql并设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改项目配置文件settings-py"><span class="nav-number">3.3.</span> <span class="nav-text">3.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-项目文件的上传"><span class="nav-number">3.4.</span> <span class="nav-text">4.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-数据库文件的导入"><span class="nav-number">3.5.</span> <span class="nav-text">5.数据库文件的导入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">3.5.1.</span> <span class="nav-text">关闭防火墙</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-测试uWSGI是否能正常运行"><span class="nav-number">3.6.</span> <span class="nav-text">6.测试uWSGI是否能正常运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-UWSGI配置文件"><span class="nav-number">3.7.</span> <span class="nav-text">7.UWSGI配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-安装Nginx"><span class="nav-number">3.8.</span> <span class="nav-text">8.安装Nginx</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-配置nginx文件"><span class="nav-number">3.9.</span> <span class="nav-text">9.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-启动项目"><span class="nav-number">3.10.</span> <span class="nav-text">10.启动项目</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">一.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装python"><span class="nav-number">2.</span> <span class="nav-text">二.安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-部署uWSGI服务器"><span class="nav-number">3.</span> <span class="nav-text">三.部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">3.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装mysql并设置密码"><span class="nav-number">3.2.</span> <span class="nav-text">2.安装mysql并设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改项目配置文件settings-py"><span class="nav-number">3.3.</span> <span class="nav-text">3.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-项目文件的上传"><span class="nav-number">3.4.</span> <span class="nav-text">4.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-数据库文件的导入"><span class="nav-number">3.5.</span> <span class="nav-text">5.数据库文件的导入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">3.5.1.</span> <span class="nav-text">关闭防火墙</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-测试uWSGI是否能正常运行"><span class="nav-number">3.6.</span> <span class="nav-text">6.测试uWSGI是否能正常运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-UWSGI配置文件"><span class="nav-number">3.7.</span> <span class="nav-text">7.UWSGI配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-安装Nginx"><span class="nav-number">4.</span> <span class="nav-text">四.安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置nginx文件"><span class="nav-number">4.1.</span> <span class="nav-text">1.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动项目"><span class="nav-number">4.2.</span> <span class="nav-text">2.启动项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注："><span class="nav-number">4.3.</span> <span class="nav-text">注：</span></a></li></ol></li></ol></div>
             
 
           </div>
