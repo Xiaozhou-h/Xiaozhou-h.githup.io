@@ -108,18 +108,18 @@
 
 
 
-  <meta name="description" content="方法：    在uwsgi.ini添加 pythonpath = /etc/python/python3.6/lib/python3.6/site-packages   python2 -m pip install Django==1.11.15   版本不兼容   123456&amp;gt; # encoding: utf-8     settings文件头部添加  /xe6&amp;gt; #coding">
-<meta name="keywords" content="项目调试">
+  <meta name="description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
+<meta name="keywords" content="宝塔部署项目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目调试">
 <meta property="og:url" content="http://yoursite.com/2020/11/15/项目调试/index.html">
 <meta property="og:site_name" content="小周的博客">
-<meta property="og:description" content="方法：    在uwsgi.ini添加 pythonpath = /etc/python/python3.6/lib/python3.6/site-packages   python2 -m pip install Django==1.11.15   版本不兼容   123456&amp;gt; # encoding: utf-8     settings文件头部添加  /xe6&amp;gt; #coding">
+<meta property="og:description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-14T18:47:39.846Z">
+<meta property="og:updated_time" content="2020-11-18T14:37:04.916Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目调试">
-<meta name="twitter:description" content="方法：    在uwsgi.ini添加 pythonpath = /etc/python/python3.6/lib/python3.6/site-packages   python2 -m pip install Django==1.11.15   版本不兼容   123456&amp;gt; # encoding: utf-8     settings文件头部添加  /xe6&amp;gt; #coding">
+<meta name="twitter:description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
 
 
 
@@ -394,12 +394,24 @@
                 
               
 
-              <time title="Post created: 2020-11-15 01:22:59 / Updated at: 02:47:39" itemprop="dateCreated datePublished" datetime="2020-11-15T01:22:59+08:00">2020-11-15</time>
+              <time title="Post created: 2020-11-15 01:22:59" itemprop="dateCreated datePublished" datetime="2020-11-15T01:22:59+08:00">2020-11-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-11-18 22:37:04" itemprop="dateModified" datetime="2020-11-18T22:37:04+08:00">2020-11-18</time>
               
             
           </span>
@@ -442,30 +454,33 @@
       
 
       
-        <blockquote>
-<p>方法：    在uwsgi.ini添加 pythonpath = /etc/python/python3.6/lib/python3.6/site-packages</p>
-</blockquote>
+        <p><strong>基础环境</strong></p>
+<ul>
+<li>装好宝塔服务</li>
+<li>宝塔里装好【Python项目管理器】</li>
+<li>宝塔里装好【Nginx】</li>
+</ul>
+<p><strong>把Django项目代码发到服务器</strong></p>
+<p>把代码放到服务器上有两种方法：</p>
+<ul>
+<li>方法一：服务器上安装Git，通过Git Clone代码到服务器上</li>
+<li>方法二：通过宝塔的FTP工具把代码上传上去</li>
+</ul>
+<p>注意： 在目录:<code>/www/wwwroot/</code>下新建一个文件夹， 把代码需要放到新建的目录中</p>
 <blockquote>
-<p>python2 -m pip install Django==1.11.15   版本不兼容</p>
+<p>在windows本地项目cmd中   <code>pip freeze &gt; requirements.txt</code></p>
 </blockquote>
+<p><strong>创建Python（Django）项目</strong></p>
+<p>现在我们开始创建 python 项目。打开首页的 python 项目管理器，点击 添加项目。填充数据：<br>* 项目名称： 自定义就行<br>* 路径： 定位到 manage.py 文件所在的路径<br>* Python 版本： 选择你项目对应的 python 版本<br>* 框架： 选择 Django<br>* 启动方式： uswgi<br>* 启动文件/文件加： 定位到 wsgi.py 所在的路径<br>* 端口： 自定义就行，设置1024端口号之后的<br>* 勾选上 是否安装模块依赖 与 开机启动<br>点击确定，然后等待创建。</p>
+<p>在 python 项目管理器 中点击 【映射】，设置域名(或者外网IP)。</p>
+<p>映射成功后在面板侧边栏【网站】菜单中查看。（此时已经可以在外部访问了。但是是没有静态文件的）</p>
+<p>在网站中点击我们刚才映射出的域名或ip，会出现一个弹窗，选择 反向代理  &gt;    配置文件</p>
+<p>来添加静态文件和媒体资源的配置。</p>
 <blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; # encoding: utf-8     settings文件头部添加  /xe6</span><br><span class="line">&gt; #coding:utf-8         /index/__init__文件头部添加  /xe4    </span><br><span class="line">&gt; </span><br><span class="line">&gt; #!usr/bin/python</span><br><span class="line">&gt; # -*- coding: UTF-8 -*-        /xe5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; location /static/ &#123;</span><br><span class="line">&gt; alias /www/wwwroot/myblog/static/;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; location /media/ &#123;</span><br><span class="line">&gt; alias /www/wwwroot/myblog/media/;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>Error loading MySQLdb module: No module named MySQLdb.</p>
-<blockquote>
-<p>[root@zhou music]# pip3 install pymysql </p>
-<p>[root@zhou music]# vi <strong>init</strong>.py<br>import pymysql</p>
-<p>pymysql.install_as_MySQLdb()</p>
-</blockquote>
-<p>nginx502错误</p>
-<blockquote>
-<p>在/etc/nginx/conf.d/default.conf中添加</p>
-<p>server{</p>
-<p>listen 80；</p>
-<p>listen 8080；#添加这行</p>
-<p>server_name <a href="https://link.zhihu.com/?target=http%3A//www.abc.com" target="_blank" rel="noopener">http://www.abc.com</a> ;</p>
-<p>}</p>
-</blockquote>
+<p>接下来回到面版首页，点击 python 项目管理器 ，选择项目 进行重启。</p>
+<p>重启完成后 点击 Nginx 进行 重载配置。</p>
 
       
     </div>
@@ -489,7 +504,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/项目调试/" rel="tag"><i class="fa fa-tag"></i> 项目调试</a>
+            <a href="/tags/宝塔部署项目/" rel="tag"><i class="fa fa-tag"></i> 宝塔部署项目</a>
           
         </div>
       
@@ -511,6 +526,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/05/Django详解/" rel="prev" title="Django详解">
+                Django详解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -667,7 +686,7 @@
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>

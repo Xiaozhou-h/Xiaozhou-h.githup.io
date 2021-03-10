@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、settings环境配置类1、介绍 用于配置项目环境，如添加app 、添加中间件、导入模板、配置数据库连接、配置自定义用户模型等。  2、用法案例 123456789&amp;gt; # 配置自定义用户模型&amp;gt; AUTH_USER_MODEL = &apos;account.MyUser&apos;&amp;gt; &amp;gt; STATIC_URL = &apos;/static/&apos;&amp;gt; STATICFILES_DIRS = [os">
+<meta name="keywords" content="Django详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django详解">
+<meta property="og:url" content="http://yoursite.com/2021/03/05/Django详解/index.html">
+<meta property="og:site_name" content="小周的博客">
+<meta property="og:description" content="一、settings环境配置类1、介绍 用于配置项目环境，如添加app 、添加中间件、导入模板、配置数据库连接、配置自定义用户模型等。  2、用法案例 123456789&amp;gt; # 配置自定义用户模型&amp;gt; AUTH_USER_MODEL = &apos;account.MyUser&apos;&amp;gt; &amp;gt; STATIC_URL = &apos;/static/&apos;&amp;gt; STATICFILES_DIRS = [os">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-03-10T08:18:21.333Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django详解">
+<meta name="twitter:description" content="一、settings环境配置类1、介绍 用于配置项目环境，如添加app 、添加中间件、导入模板、配置数据库连接、配置自定义用户模型等。  2、用法案例 123456789&amp;gt; # 配置自定义用户模型&amp;gt; AUTH_USER_MODEL = &apos;account.MyUser&apos;&amp;gt; &amp;gt; STATIC_URL = &apos;/static/&apos;&amp;gt; STATICFILES_DIRS = [os">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/03/05/Django详解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Django详解 | 小周的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小周的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/05/Django详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小周的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-03-05 19:39:33" itemprop="dateCreated datePublished" datetime="2021-03-05T19:39:33+08:00">2021-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2021-03-10 16:18:21" itemprop="dateModified" datetime="2021-03-10T16:18:21+08:00">2021-03-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/03/05/Django详解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2021/03/05/Django详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="一、settings环境配置类"><a href="#一、settings环境配置类" class="headerlink" title="一、settings环境配置类"></a>一、settings环境配置类</h4><h5 id="1、介绍"><a href="#1、介绍" class="headerlink" title="1、介绍"></a>1、介绍</h5><blockquote>
+<p>用于配置项目环境，如添加app 、添加中间件、导入模板、配置数据库连接、配置自定义用户模型等。</p>
+</blockquote>
+<h5 id="2、用法案例"><a href="#2、用法案例" class="headerlink" title="2、用法案例"></a>2、用法案例</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># 配置自定义用户模型</span></span><br><span class="line">&gt; AUTH_USER_MODEL = <span class="string">'account.MyUser'</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; STATIC_URL = <span class="string">'/static/'</span></span><br><span class="line">&gt; STATICFILES_DIRS = [os.path.join(BASE_DIR, <span class="string">'publicStatic'</span>)]</span><br><span class="line">&gt; <span class="comment"># 设置媒体资源的保存路径</span></span><br><span class="line">&gt; MEDIA_URL = <span class="string">'/media/'</span></span><br><span class="line">&gt; MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'media'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="二、models创建表单类"><a href="#二、models创建表单类" class="headerlink" title="二、models创建表单类"></a>二、models创建表单类</h4><h5 id="1、介绍-1"><a href="#1、介绍-1" class="headerlink" title="1、介绍"></a>1、介绍</h5><blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; Django 模型是与数据库相关的，与数据库相关的代码一般写在 models.py 中，Django 支持 sqlite3, MySQL, PostgreSQL等数据库，只需要在settings.py中配置即可，不用更改models.py中的代码，丰富的API极大的方便了使用。(用于生成对应的数据库表单能设置外键)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="2、用法案例-1"><a href="#2、用法案例-1" class="headerlink" title="2、用法案例"></a>2、用法案例</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># 以下为账户表单的定义与生成</span></span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">MyUser</span><span class="params">(AbstractUser)</span>:</span>   <span class="comment">#抽象用户</span></span><br><span class="line">&gt;     name = models.CharField(<span class="string">'姓名'</span>, max_length=<span class="number">50</span>, default=<span class="string">'匿名用户'</span>)</span><br><span class="line">&gt;     introduce = models.TextField(<span class="string">'简介'</span>,default=<span class="string">'暂无介绍'</span>)</span><br><span class="line">&gt;     company = models.CharField(<span class="string">'公司'</span>, max_length=<span class="number">100</span>, default=<span class="string">'暂无信息'</span>)</span><br><span class="line">&gt;     profession = models.CharField(<span class="string">'职业'</span>, max_length=<span class="number">100</span>, default=<span class="string">'暂无信息'</span>)</span><br><span class="line">&gt;     address = models.CharField(<span class="string">'住址'</span>, max_length=<span class="number">100</span>, default=<span class="string">'暂无信息'</span>)</span><br><span class="line">&gt; 	<span class="comment"># 此处省略部分代码</span></span><br><span class="line">&gt;     <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">&gt;         <span class="keyword">return</span> self.name</span><br><span class="line">&gt;     </span><br><span class="line">&gt; <span class="comment"># 图片墙表单的定义生成</span></span><br><span class="line">&gt;     <span class="class"><span class="keyword">class</span> <span class="title">AlbumInfo</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">&gt;     id = models.AutoField(primary_key=<span class="keyword">True</span>)</span><br><span class="line">&gt;     <span class="comment"># 以下便是设置外键连接</span></span><br><span class="line">&gt;     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, verbose_name=<span class="string">'用户'</span>)</span><br><span class="line">&gt;     title = models.CharField(<span class="string">'标题'</span>, max_length=<span class="number">50</span>, blank=<span class="keyword">True</span>)</span><br><span class="line">&gt;     introduce = models.CharField(<span class="string">'描述'</span>, max_length=<span class="number">200</span>, blank=<span class="keyword">True</span>)</span><br><span class="line">&gt;     photo = models.ImageField(<span class="string">'图片'</span>, blank=<span class="keyword">True</span>, upload_to=<span class="string">'image/album/'</span>)</span><br><span class="line">&gt; </span><br><span class="line">&gt;     <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">&gt;         <span class="keyword">return</span> str(self.id)</span><br><span class="line">&gt; </span><br><span class="line">&gt;     <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">&gt;         verbose_name = <span class="string">'图片墙管理'</span></span><br><span class="line">&gt;         verbose_name_plural = <span class="string">'图片墙管理'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="3、Meta详解"><a href="#3、Meta详解" class="headerlink" title="3、Meta详解"></a>3、Meta详解</h5><blockquote>
+<p>在使用 Django 的 ORM 模型进行数据库的设计时，我们常常会看到在models 中经常会出现一个 class Meta 的内部类，那它的作用是什么呢？</p>
+<p>db_table 属性：自定义数据表的名称，是可选属性。默认数据表的命名规则为： 应用名_类名。</p>
+<p>　　例如：你创建了一个名为 blog 的应用时，且你为这个应用创建了一个 User 类 的models时，</p>
+<p>　　　　   这时django会将会为你创建一张名为 blog_User 的数据表。</p>
+<p>verbose_name 属性：自定义一个易于理解的名称，如上图，</p>
+<p>　　　　verbose_name = ‘地址’, 用来标志这个表时用来存放地址信息的</p>
+<p> verbose_name_plural 属性：<br>　　　　如果此项没有设置，Django 会使用 verbose_name + “s”来表示。</p>
+</blockquote>
+<h4 id="三、urls路由设置"><a href="#三、urls路由设置" class="headerlink" title="三、urls路由设置"></a>三、urls路由设置</h4><h5 id="1、定义路由列表"><a href="#1、定义路由列表" class="headerlink" title="1、定义路由列表"></a>1、定义路由列表</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; ........</span><br><span class="line">&gt; <span class="keyword">from</span> django.conf <span class="keyword">import</span> settings</span><br><span class="line">&gt; urlpatterns = [</span><br><span class="line">&gt;     <span class="comment"># Admin后台系统</span></span><br><span class="line">&gt;     path(<span class="string">'admin/'</span>, admin.site.urls),</span><br><span class="line">&gt;     <span class="comment"># 用户注册与登录</span></span><br><span class="line">&gt;     path(<span class="string">'user/'</span>, include(<span class="string">'account.urls'</span>)),</span><br><span class="line">&gt; ...................</span><br><span class="line">&gt;     <span class="comment"># 留言板</span></span><br><span class="line">&gt;     path(<span class="string">'board/'</span>, include(<span class="string">'interflow.urls'</span>)),</span><br><span class="line">&gt;     <span class="comment"># 配置媒体资源的路由信息</span></span><br><span class="line">&gt;     re_path(<span class="string">'media/(?P&lt;path&gt;.*)'</span>, serve, &#123;<span class="string">'document_root'</span>: settings.MEDIA_ROOT&#125;, name=<span class="string">'media'</span>),</span><br><span class="line">&gt; ]</span><br><span class="line">&gt; <span class="comment"># 注释： path('user/', include('account.urls')),</span></span><br><span class="line">&gt; <span class="comment"># 'user/'表示127.0.0.1:8000/user的路由地址</span></span><br><span class="line">&gt; <span class="comment"># include('account.urls')表示将路由信息分发给account的urls.py处理</span></span><br><span class="line">&gt; <span class="comment">#  re_path('media/(?P&lt;path&gt;.*)', .....路由的正则表达式</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="四、模板文件（略）"><a href="#四、模板文件（略）" class="headerlink" title="四、模板文件（略）"></a>四、模板文件（略）</h4><h5 id="1、模板文件夹templates"><a href="#1、模板文件夹templates" class="headerlink" title="1、模板文件夹templates"></a>1、模板文件夹templates</h5><blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">&lt;!--分页功能--&gt;</span></span><br><span class="line">&gt; <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"pagelist"</span>&gt;</span></span><br><span class="line">&gt;     &#123;% if pageInfo.has_previous %&#125;</span><br><span class="line">&gt;         <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'board' id pageInfo.previous_page_number %&#125;"</span>&gt;</span>上一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&gt;     &#123;% endif %&#125;</span><br><span class="line">&gt;     &#123;% if pageInfo.object_list %&#125;</span><br><span class="line">&gt;         &#123;% for page in pageInfo.paginator.page_range %&#125;</span><br><span class="line">&gt;             &#123;% if pageInfo.number == page %&#125;</span><br><span class="line">&gt;                 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:;"</span> <span class="attr">class</span>=<span class="string">"curPage"</span>&gt;</span>&#123;&#123; page &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&gt;              &#123;% else %&#125;</span><br><span class="line">&gt;                 <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'board' id page %&#125;"</span>&gt;</span>&#123;&#123; page &#125;&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&gt;             &#123;% endif %&#125;</span><br><span class="line">&gt;         &#123;% endfor %&#125;</span><br><span class="line">&gt;     &#123;% endif %&#125;</span><br><span class="line">&gt; &#123;% if pageInfo.has_next %&#125;</span><br><span class="line">&gt;     <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&#123;% url 'board' id pageInfo.next_page_number %&#125;"</span>&gt;</span>下一页<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">&gt; &#123;% endif %&#125;</span><br><span class="line">&gt; <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="五、views视图功能"><a href="#五、views视图功能" class="headerlink" title="五、views视图功能"></a>五、views视图功能</h4><h5 id="1、介绍-2"><a href="#1、介绍-2" class="headerlink" title="1、介绍"></a>1、介绍</h5><blockquote>
+<p>功能函数，如上传、登录等，可用于前后端数据交互</p>
+</blockquote>
+<h5 id="2、用法案列"><a href="#2、用法案列" class="headerlink" title="2、用法案列"></a>2、用法案列</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&gt; ............</span><br><span class="line">&gt; <span class="keyword">from</span> django.urls <span class="keyword">import</span> reverse</span><br><span class="line">&gt; <span class="function"><span class="keyword">def</span> <span class="title">register</span><span class="params">(request)</span>:</span></span><br><span class="line">&gt;     title = <span class="string">'注册博客'</span></span><br><span class="line">&gt;     pageTitle = <span class="string">'用户注册'</span></span><br><span class="line">&gt;     confirmPassword = <span class="keyword">True</span></span><br><span class="line">&gt;     button = <span class="string">'注册'</span></span><br><span class="line">&gt;     urlText = <span class="string">'用户登录'</span></span><br><span class="line">&gt;     urlName = <span class="string">'userLogin'</span></span><br><span class="line">&gt;     <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">&gt;         u = request.POST.get(<span class="string">'username'</span>, <span class="string">''</span>)</span><br><span class="line">&gt;         p = request.POST.get(<span class="string">'password'</span>, <span class="string">''</span>)</span><br><span class="line">&gt;         cp = request.POST.get(<span class="string">'cp'</span>, <span class="string">''</span>)</span><br><span class="line">&gt;         <span class="keyword">if</span> MyUser.objects.filter(username=u):</span><br><span class="line">&gt;             tips = <span class="string">'用户已存在'</span></span><br><span class="line">&gt;         <span class="keyword">elif</span> cp != p:</span><br><span class="line">&gt;             tips = <span class="string">'两次密码输入不一致'</span></span><br><span class="line">&gt;         <span class="keyword">else</span>:</span><br><span class="line">&gt;             d =&#123;</span><br><span class="line">&gt;                 <span class="string">'username'</span>: u, <span class="string">'password'</span>: p,</span><br><span class="line">&gt;                 <span class="string">'is_superuser'</span>: <span class="number">1</span>, <span class="string">'is_staff'</span>: <span class="number">1</span></span><br><span class="line">&gt;             &#125;</span><br><span class="line">&gt;             user = MyUser.objects.create_user(**d)</span><br><span class="line">&gt;             user.save()</span><br><span class="line">&gt;             tips = <span class="string">'注册成功，请登录'</span></span><br><span class="line">&gt;             logout(request)</span><br><span class="line">&gt;             <span class="keyword">return</span> redirect(reverse(<span class="string">'userLogin'</span>))</span><br><span class="line">&gt;         <span class="keyword">return</span> render(request, <span class="string">'user.html'</span>, locals())</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="六、admin后台管理模块"><a href="#六、admin后台管理模块" class="headerlink" title="六、admin后台管理模块"></a>六、admin后台管理模块</h4><h5 id="1、介绍-3"><a href="#1、介绍-3" class="headerlink" title="1、介绍"></a>1、介绍</h5><blockquote>
+<p>Django的admin可以提供一个强大的后台管理功能，可以在web界面对数据库进行操作,我们需要修改admin.py将要操作的数据表注册到后台管理中 </p>
+</blockquote>
+<h5 id="2、用法案列-1"><a href="#2、用法案列-1" class="headerlink" title="2、用法案列"></a>2、用法案列</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> django.utils.translation <span class="keyword">import</span> gettext_lazy <span class="keyword">as</span> _</span><br><span class="line">&gt; @admin.register(MyUser)</span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">MyUserAdmin</span><span class="params">(UserAdmin)</span>:</span></span><br><span class="line">&gt;     list_display = [<span class="string">'username'</span>, <span class="string">'email'</span>, <span class="string">'name'</span>,</span><br><span class="line">&gt;                     <span class="string">'introduce'</span>, <span class="string">'company'</span>, <span class="string">'profession'</span>,</span><br><span class="line">&gt;                     <span class="string">'address'</span>, <span class="string">'telephoto'</span>, <span class="string">'wx'</span>, <span class="string">'qq'</span>, <span class="string">'wb'</span>, <span class="string">'photo'</span>]</span><br><span class="line">&gt;     <span class="comment"># 在修改界面添加mobile,qq,weChat的信息输入框</span></span><br><span class="line">&gt;     <span class="comment"># 将源码的UserAdmin.fieldsets转换成列表格式</span></span><br><span class="line">&gt;     fieldsets = list(UserAdmin.fieldsets)</span><br><span class="line">&gt;     <span class="comment"># 重写UserAdmin的fieldsets，添加模型字段信息录入</span></span><br><span class="line">&gt;     fieldsets[<span class="number">1</span>] = (_(<span class="string">'Personal info'</span>), </span><br><span class="line">&gt;                     &#123;<span class="string">'fields'</span>: (<span class="string">'name'</span>, <span class="string">'introduce'</span>, <span class="string">'email'</span>, <span class="string">'company'</span>, </span><br><span class="line">&gt;                                 <span class="string">'profession'</span>, <span class="string">'address'</span>, <span class="string">'telephone'</span>, </span><br><span class="line">&gt;                                 <span class="string">'wx'</span>, <span class="string">'qq'</span>, <span class="string">'wb'</span>, <span class="string">'photo'</span>)&#125;)</span><br><span class="line">&gt;     </span><br><span class="line">&gt;     <span class="comment"># 根据当前用户名设置数据访问权限</span></span><br><span class="line">&gt;     <span class="function"><span class="keyword">def</span> <span class="title">get_queryset</span><span class="params">(self, request)</span>:</span> </span><br><span class="line">&gt;         qs = super().get_queryset(request)</span><br><span class="line">&gt;         <span class="keyword">return</span> qs.filter(id=request.user.id)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="七、–init–项目应用初始化"><a href="#七、–init–项目应用初始化" class="headerlink" title="七、–init–项目应用初始化"></a>七、–init–项目应用初始化</h4><h5 id="1、介绍-4"><a href="#1、介绍-4" class="headerlink" title="1、介绍"></a>1、介绍</h5><blockquote>
+<p>在Python中定义类经常会用到<strong>init</strong>函数（方法），首先需要理解的是，两个下划线开头的函数是声明该属性为私有，不能在类的外部被使用或访问。而<strong>init</strong>函数（方法）支持带参数类的初始化，也可为声明该类的属性（类中的变量）。<strong>init</strong>函数（方法）的第一个参数必须为self，后续参数为自己定义。 </p>
+</blockquote>
+<h5 id="2、用法案列-2"><a href="#2、用法案列-2" class="headerlink" title="2、用法案列"></a>2、用法案列</h5><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> django.apps <span class="keyword">import</span> AppConfig</span><br><span class="line">&gt; <span class="keyword">import</span> os</span><br><span class="line">&gt; <span class="comment"># 修改app在admin后台显示的名称</span></span><br><span class="line">&gt; <span class="comment"># default_app_config 的值来自apps.py的类名</span></span><br><span class="line">&gt; default_app_config = <span class="string">'account.IndexConfig'</span></span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment"># 获取当前app的命名</span></span><br><span class="line">&gt; <span class="function"><span class="keyword">def</span> <span class="title">get_current_app_name</span><span class="params">(_file)</span>:</span></span><br><span class="line">&gt;     <span class="keyword">return</span> os.path.split(os.path.dirname(_file))[<span class="number">-1</span>]</span><br><span class="line">&gt; </span><br><span class="line">&gt; <span class="comment"># 重写类IndexConfig</span></span><br><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">IndexConfig</span><span class="params">(AppConfig)</span>:</span></span><br><span class="line">&gt;     name = get_current_app_name(__file__)</span><br><span class="line">&gt;     verbose_name = <span class="string">'用户管理'</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="八、缺失文件"><a href="#八、缺失文件" class="headerlink" title="八、缺失文件"></a>八、缺失文件</h4><blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; /media/images</span><br><span class="line">&gt; /publicStatic/*</span><br><span class="line">&gt; /static</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h5 id="2、数据库创建"><a href="#2、数据库创建" class="headerlink" title="2、数据库创建"></a>2、数据库创建</h5><blockquote>
+<p>python manage.py migrate</p>
+</blockquote>
+<h4 id="九、报错信息"><a href="#九、报错信息" class="headerlink" title="九、报错信息"></a>九、报错信息</h4><h5 id="1、依赖于没有迁移的应用程序：帐户"><a href="#1、依赖于没有迁移的应用程序：帐户" class="headerlink" title="1、依赖于没有迁移的应用程序：帐户"></a>1、依赖于没有迁移的应用程序：帐户</h5><blockquote>
+<p>启动django项目时报错:    ValueError: Dependency on app with no migrations: account</p>
+<p>原因没有迁移表造成的:</p>
+<pre><code>python manage.py makemigrations
+
+python manage.py migrate
+</code></pre></blockquote>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Django详解/" rel="tag"><i class="fa fa-tag"></i> Django详解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/15/项目调试/" rel="next" title="项目调试">
+                <i class="fa fa-chevron-left"></i> 项目调试
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/admin.png" alt="周某人">
+            
+              <p class="site-author-name" itemprop="name">周某人</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shiguangzhe.top/" title="https://shiguangzhe.top/" rel="noopener" target="_blank">水墨青衫</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、settings环境配置类"><span class="nav-number">1.</span> <span class="nav-text">一、settings环境配置类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、介绍"><span class="nav-number">1.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、用法案例"><span class="nav-number">1.2.</span> <span class="nav-text">2、用法案例</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、models创建表单类"><span class="nav-number">2.</span> <span class="nav-text">二、models创建表单类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、介绍-1"><span class="nav-number">2.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、用法案例-1"><span class="nav-number">2.2.</span> <span class="nav-text">2、用法案例</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3、Meta详解"><span class="nav-number">2.3.</span> <span class="nav-text">3、Meta详解</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、urls路由设置"><span class="nav-number">3.</span> <span class="nav-text">三、urls路由设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、定义路由列表"><span class="nav-number">3.1.</span> <span class="nav-text">1、定义路由列表</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、模板文件（略）"><span class="nav-number">4.</span> <span class="nav-text">四、模板文件（略）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、模板文件夹templates"><span class="nav-number">4.1.</span> <span class="nav-text">1、模板文件夹templates</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、views视图功能"><span class="nav-number">5.</span> <span class="nav-text">五、views视图功能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、介绍-2"><span class="nav-number">5.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、用法案列"><span class="nav-number">5.2.</span> <span class="nav-text">2、用法案列</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、admin后台管理模块"><span class="nav-number">6.</span> <span class="nav-text">六、admin后台管理模块</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、介绍-3"><span class="nav-number">6.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、用法案列-1"><span class="nav-number">6.2.</span> <span class="nav-text">2、用法案列</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、–init–项目应用初始化"><span class="nav-number">7.</span> <span class="nav-text">七、–init–项目应用初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、介绍-4"><span class="nav-number">7.1.</span> <span class="nav-text">1、介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2、用法案列-2"><span class="nav-number">7.2.</span> <span class="nav-text">2、用法案列</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、缺失文件"><span class="nav-number">8.</span> <span class="nav-text">八、缺失文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2、数据库创建"><span class="nav-number">8.1.</span> <span class="nav-text">2、数据库创建</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#九、报错信息"><span class="nav-number">9.</span> <span class="nav-text">九、报错信息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1、依赖于没有迁移的应用程序：帐户"><span class="nav-number">9.1.</span> <span class="nav-text">1、依赖于没有迁移的应用程序：帐户</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周某人</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+  
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: '',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'ce717dc71ef58f203a5b0568467853963e7f7d7c',
+            
+                client_id: '9c5db405241643bb346f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" color="123,143,200" opacity="0.7" zindex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	
+</body>
+</html>

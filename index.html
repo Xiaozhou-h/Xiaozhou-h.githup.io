@@ -348,6 +348,172 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/03/05/Django详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小周的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2021/03/05/Django详解/" class="post-title-link" itemprop="http://yoursite.com/index.html">Django详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-03-05 19:39:33" itemprop="dateCreated datePublished" datetime="2021-03-05T19:39:33+08:00">2021-03-05</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2021-03-10 16:18:21" itemprop="dateModified" datetime="2021-03-10T16:18:21+08:00">2021-03-10</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          一、settings环境配置类1、介绍
+用于配置项目环境，如添加app 、添加中间件、导入模板、配置数据库连接、配置自定义用户模型等。
+
+2、用法案例
+123456789&gt; # 配置自定义用户模型&gt; AUTH_USER_MODEL = 'account.MyUser'&gt; &gt; 
+          ...
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2021/03/05/Django详解/#more" rel="contents">
+                Weiterlesen &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/项目调试/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -393,12 +559,24 @@
                 
               
 
-              <time title="Post created: 2020-11-15 01:22:59 / Updated at: 02:47:39" itemprop="dateCreated datePublished" datetime="2020-11-15T01:22:59+08:00">2020-11-15</time>
+              <time title="Post created: 2020-11-15 01:22:59" itemprop="dateCreated datePublished" datetime="2020-11-15T01:22:59+08:00">2020-11-15</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Updated at: 2020-11-18 22:37:04" itemprop="dateModified" datetime="2020-11-18T22:37:04+08:00">2020-11-18</time>
               
             
           </span>
@@ -433,14 +611,19 @@
       
         
           
-          
-方法：    在uwsgi.ini添加 pythonpath = /etc/python/python3.6/lib/python3.6/site-packages
+          基础环境
 
+装好宝塔服务
+宝塔里装好【Python项目管理器】
+宝塔里装好【Nginx】
 
-python2 -m pip install Django==1.11.15   版本不兼容
+把Django项目代码发到服务器
+把代码放到服务器上有两种方法：
 
+方法一：服务器上安装Git，通过Git Clone代码到服务器上
+方法二：通过宝塔的FTP工具把代码上传上去
 
-123456&gt; # en
+注意： 在目录:/www/w
           ...
           <!--noindex-->
           
@@ -1652,173 +1835,6 @@ File-&gt;Settings-&gt
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/19/Django前端框架/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="周某人">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/admin.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="小周的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/09/19/Django前端框架/" class="post-title-link" itemprop="http://yoursite.com/index.html">Django前端框架</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Veröffentlicht am</span>
-              
-
-              
-                
-              
-
-              <time title="Post created: 2020-09-19 20:23:03" itemprop="dateCreated datePublished" datetime="2020-09-19T20:23:03+08:00">2020-09-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Updated at: 2020-10-13 18:47:12" itemprop="dateModified" datetime="2020-10-13T18:47:12+08:00">2020-10-13</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          路由定义规则路由错误
- 路由错误，一般为路由没有添加，或者添加错误，语法不对
-路由错误一般在Mydjango下的路由配置文件，或者其他APP的路由配置文件urls.py中如图是其中一种情况
-
-
-
-          
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/09/19/Django前端框架/#more" rel="contents">
-                Weiterlesen &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/19/博客更新/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2102,7 +2118,7 @@ File-&gt;Settings-&gt
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
-<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
