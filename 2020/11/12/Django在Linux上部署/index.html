@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="小周的博客">
 <meta property="og:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc     3.正式安装python3，和p">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-15T08:52:19.113Z">
+<meta property="og:updated_time" content="2021-03-13T05:52:35.191Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
 <meta name="twitter:description" content="一.一个完整的Linux系统此处略 可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器  二.安装python1.安装Linux的wget工具，用于在网上下载文件 yum -y installl wget  (如果使用的是云服务器这一步可省去)  2. GCC编译器环境，安装python 3 时所需的编译环境 yum -y install gcc     3.正式安装python3，和p">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-15 16:52:19" itemprop="dateModified" datetime="2020-11-15T16:52:19+08:00">2020-11-15</time>
+                <time title="Updated at: 2021-03-13 13:52:35" itemprop="dateModified" datetime="2021-03-13T13:52:35+08:00">2021-03-13</time>
               
             
           </span>
@@ -503,6 +503,18 @@
 <blockquote>
 <p>uwsgi –http :8080 –chdir /root/music -w music.wsgi    浏览器输入对应的公网ip和端口号</p>
 </blockquote>
+<h5 id="报错信息：Internal-server-error"><a href="#报错信息：Internal-server-error" class="headerlink" title="报错信息：Internal server error"></a>报错信息：Internal server error</h5><blockquote>
+<p>由于使用的虚拟环境中python2 3 共存，项目中的django框架需要在python3中运行，而默认使用的却是python2故会出现此问题。 </p>
+<p>解决方案：<br>寻找django的路径 并于uwsgi 中声明</p>
+<p>找到django路径（若有虚拟环境应在虚拟环境中运行）</p>
+<p>pip show django|grep -i location<br>在uwsgi文件中添加路径</p>
+<p>[uwsgi]<br>pythonpath = /data/env/MyP02/lib/python3.6/site-packages<br>进入uwsgi所在目录</p>
+<p>cd /home/MyProject<br>关闭所有uwsgi进程</p>
+<p>kill -9 <code>cat uwsgi.pid</code><br>重新启动uwsgi服务</p>
+<p>uwsgi –ini uwsgi.ini </p>
+<p>查看uwsgi日志后访问网址，检查是否仍然报错</p>
+<p>tail -f uwsgi.log</p>
+</blockquote>
 <h4 id="7-UWSGI配置文件"><a href="#7-UWSGI配置文件" class="headerlink" title="7.UWSGI配置文件"></a>7.UWSGI配置文件</h4><blockquote>
 <p>[root@zhou ~]# cd music</p>
 <p>[root@zhou music]# vi music_uwsgi.ini</p>
@@ -542,7 +554,7 @@
 <p>kill -9 pid   杀进程</p>
 <p>shutdown -r now   立刻重启</p>
 </blockquote>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 端口进程查看</span><br><span class="line">netstat -tunlp | grep 8080</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -749,7 +761,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">一.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装python"><span class="nav-number">2.</span> <span class="nav-text">二.安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-部署uWSGI服务器"><span class="nav-number">3.</span> <span class="nav-text">三.部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">3.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装mysql并设置密码"><span class="nav-number">3.2.</span> <span class="nav-text">2.安装mysql并设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改项目配置文件settings-py"><span class="nav-number">3.3.</span> <span class="nav-text">3.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-项目文件的上传"><span class="nav-number">3.4.</span> <span class="nav-text">4.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-数据库文件的导入"><span class="nav-number">3.5.</span> <span class="nav-text">5.数据库文件的导入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">3.5.1.</span> <span class="nav-text">关闭防火墙</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-测试uWSGI是否能正常运行"><span class="nav-number">3.6.</span> <span class="nav-text">6.测试uWSGI是否能正常运行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-UWSGI配置文件"><span class="nav-number">3.7.</span> <span class="nav-text">7.UWSGI配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-安装Nginx"><span class="nav-number">4.</span> <span class="nav-text">四.安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置nginx文件"><span class="nav-number">4.1.</span> <span class="nav-text">1.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动项目"><span class="nav-number">4.2.</span> <span class="nav-text">2.启动项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注："><span class="nav-number">4.3.</span> <span class="nav-text">注：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一-一个完整的Linux系统此处略"><span class="nav-number">1.</span> <span class="nav-text">一.一个完整的Linux系统此处略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二-安装python"><span class="nav-number">2.</span> <span class="nav-text">二.安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三-部署uWSGI服务器"><span class="nav-number">3.</span> <span class="nav-text">三.部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">3.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-安装mysql并设置密码"><span class="nav-number">3.2.</span> <span class="nav-text">2.安装mysql并设置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-修改项目配置文件settings-py"><span class="nav-number">3.3.</span> <span class="nav-text">3.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-项目文件的上传"><span class="nav-number">3.4.</span> <span class="nav-text">4.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-数据库文件的导入"><span class="nav-number">3.5.</span> <span class="nav-text">5.数据库文件的导入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#关闭防火墙"><span class="nav-number">3.5.1.</span> <span class="nav-text">关闭防火墙</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-测试uWSGI是否能正常运行"><span class="nav-number">3.6.</span> <span class="nav-text">6.测试uWSGI是否能正常运行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#报错信息：Internal-server-error"><span class="nav-number">3.6.1.</span> <span class="nav-text">报错信息：Internal server error</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-UWSGI配置文件"><span class="nav-number">3.7.</span> <span class="nav-text">7.UWSGI配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四-安装Nginx"><span class="nav-number">4.</span> <span class="nav-text">四.安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置nginx文件"><span class="nav-number">4.1.</span> <span class="nav-text">1.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动项目"><span class="nav-number">4.2.</span> <span class="nav-text">2.启动项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注："><span class="nav-number">4.3.</span> <span class="nav-text">注：</span></a></li></ol></li></ol></div>
             
 
           </div>
