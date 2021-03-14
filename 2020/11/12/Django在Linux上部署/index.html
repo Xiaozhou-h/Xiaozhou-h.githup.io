@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="小周的博客">
 <meta property="og:description" content="一、一个Linux系统可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器 1、关闭防火墙 sudo systemctl stop firewalld.service             关闭防火墙 sudo systemctl disable firewalld.service        卸载防火墙  2、下载安装相关依赖包 yum -y install zlib-devel b">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-03-14T00:42:50.696Z">
+<meta property="og:updated_time" content="2021-03-14T00:48:04.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
 <meta name="twitter:description" content="一、一个Linux系统可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器 1、关闭防火墙 sudo systemctl stop firewalld.service             关闭防火墙 sudo systemctl disable firewalld.service        卸载防火墙  2、下载安装相关依赖包 yum -y install zlib-devel b">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2021-03-14 08:42:50" itemprop="dateModified" datetime="2021-03-14T08:42:50+08:00">2021-03-14</time>
+                <time title="Updated at: 2021-03-14 08:48:04" itemprop="dateModified" datetime="2021-03-14T08:48:04+08:00">2021-03-14</time>
               
             
           </span>
@@ -493,7 +493,7 @@
 <p>use music_db;</p>
 <p>source /root/music_db.sql;</p>
 </blockquote>
-<h3 id="三、部署uWSGI服务器"><a href="#三、部署uWSGI服务器" class="headerlink" title="三、部署uWSGI服务器"></a>三、部署uWSGI服务器</h3><h4 id="1-在部署uWSGI前先在Linux中安装相应的模块"><a href="#1-在部署uWSGI前先在Linux中安装相应的模块" class="headerlink" title="1.在部署uWSGI前先在Linux中安装相应的模块"></a>1.在部署uWSGI前先在Linux中安装相应的模块</h4><blockquote>
+<h3 id="四、部署uWSGI服务器"><a href="#四、部署uWSGI服务器" class="headerlink" title="四、部署uWSGI服务器"></a>四、部署uWSGI服务器</h3><h4 id="1-在部署uWSGI前先在Linux中安装相应的模块"><a href="#1-在部署uWSGI前先在Linux中安装相应的模块" class="headerlink" title="1.在部署uWSGI前先在Linux中安装相应的模块"></a>1.在部署uWSGI前先在Linux中安装相应的模块</h4><blockquote>
 <p>[root@zhou ~]# pip3 install mysqlclient</p>
 <p>[root@zhou ~]# pip3 install django</p>
 <p>[root@zhou ~]# pip3 install uwsgi</p>
@@ -521,7 +521,7 @@
 <p>threads=2<br>pidfile=uwsgi.pid<br>daemonize=uwsgi.log</p>
 <p>[root@zhou music]# uwsgi –ini Myblog_uwsgi.ini     启动uwsgi服务器</p>
 </blockquote>
-<h3 id="四、安装Nginx"><a href="#四、安装Nginx" class="headerlink" title="四、安装Nginx"></a>四、安装Nginx</h3><blockquote>
+<h3 id="五、安装Nginx"><a href="#五、安装Nginx" class="headerlink" title="五、安装Nginx"></a>五、安装Nginx</h3><blockquote>
 <p>[root@zhou ~]# rpm -ivh <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a>        下载nginx源</p>
 <p>[root@zhou ~]# yum install nginx        安装nginx</p>
 <blockquote>
@@ -547,7 +547,7 @@
 <p>[root@zhou nginx]# cd /root/music</p>
 <p>[root@zhou music]# uwsgi –ini music_uwsgi.ini</p>
 </blockquote>
-<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><blockquote>
+<h3 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h3><blockquote>
 <p>ps aux | grep uwsgi</p>
 <p>kill -9 pid   杀进程</p>
 <p>shutdown -r now   立刻重启</p>
@@ -759,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、一个Linux系统"><span class="nav-number">1.</span> <span class="nav-text">一、一个Linux系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、关闭防火墙"><span class="nav-number">1.1.</span> <span class="nav-text">1、关闭防火墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、下载安装相关依赖包"><span class="nav-number">1.2.</span> <span class="nav-text">2、下载安装相关依赖包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装python"><span class="nav-number">2.</span> <span class="nav-text">二、安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安装mysql并设置密码"><span class="nav-number">3.</span> <span class="nav-text">三、安装mysql并设置密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改项目配置文件settings-py"><span class="nav-number">3.1.</span> <span class="nav-text">1.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-项目文件的上传"><span class="nav-number">3.2.</span> <span class="nav-text">2.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-数据库文件的导入"><span class="nav-number">3.3.</span> <span class="nav-text">3.数据库文件的导入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、部署uWSGI服务器"><span class="nav-number">4.</span> <span class="nav-text">三、部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">4.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-测试uWSGI是否能正常运行"><span class="nav-number">4.2.</span> <span class="nav-text">2.测试uWSGI是否能正常运行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#报错信息：Internal-server-error"><span class="nav-number">4.2.1.</span> <span class="nav-text">报错信息：Internal server error</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-UWSGI配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">3.UWSGI配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、安装Nginx"><span class="nav-number">5.</span> <span class="nav-text">四、安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置nginx文件"><span class="nav-number">5.1.</span> <span class="nav-text">1.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动项目"><span class="nav-number">5.2.</span> <span class="nav-text">2.启动项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注："><span class="nav-number">5.3.</span> <span class="nav-text">注：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、一个Linux系统"><span class="nav-number">1.</span> <span class="nav-text">一、一个Linux系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、关闭防火墙"><span class="nav-number">1.1.</span> <span class="nav-text">1、关闭防火墙</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、下载安装相关依赖包"><span class="nav-number">1.2.</span> <span class="nav-text">2、下载安装相关依赖包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安装python"><span class="nav-number">2.</span> <span class="nav-text">二、安装python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-安装Linux的wget工具，用于在网上下载文件"><span class="nav-number">2.1.</span> <span class="nav-text">1.安装Linux的wget工具，用于在网上下载文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-GCC编译器环境，安装python-3-时所需的编译环境"><span class="nav-number">2.2.</span> <span class="nav-text">2. GCC编译器环境，安装python 3 时所需的编译环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-正式安装python3，和pip3"><span class="nav-number">2.3.</span> <span class="nav-text">3.正式安装python3，和pip3</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、安装mysql并设置密码"><span class="nav-number">3.</span> <span class="nav-text">三、安装mysql并设置密码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-修改项目配置文件settings-py"><span class="nav-number">3.1.</span> <span class="nav-text">1.修改项目配置文件settings.py</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-项目文件的上传"><span class="nav-number">3.2.</span> <span class="nav-text">2.项目文件的上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-数据库文件的导入"><span class="nav-number">3.3.</span> <span class="nav-text">3.数据库文件的导入</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、部署uWSGI服务器"><span class="nav-number">4.</span> <span class="nav-text">四、部署uWSGI服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-在部署uWSGI前先在Linux中安装相应的模块"><span class="nav-number">4.1.</span> <span class="nav-text">1.在部署uWSGI前先在Linux中安装相应的模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-测试uWSGI是否能正常运行"><span class="nav-number">4.2.</span> <span class="nav-text">2.测试uWSGI是否能正常运行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#报错信息：Internal-server-error"><span class="nav-number">4.2.1.</span> <span class="nav-text">报错信息：Internal server error</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-UWSGI配置文件"><span class="nav-number">4.3.</span> <span class="nav-text">3.UWSGI配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、安装Nginx"><span class="nav-number">5.</span> <span class="nav-text">五、安装Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-配置nginx文件"><span class="nav-number">5.1.</span> <span class="nav-text">1.配置nginx文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-启动项目"><span class="nav-number">5.2.</span> <span class="nav-text">2.启动项目</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注："><span class="nav-number">6.</span> <span class="nav-text">注：</span></a></li></ol></div>
             
 
           </div>
