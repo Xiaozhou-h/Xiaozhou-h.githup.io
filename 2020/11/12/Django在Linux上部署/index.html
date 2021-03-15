@@ -116,7 +116,7 @@
 <meta property="og:site_name" content="小周的博客">
 <meta property="og:description" content="一、一个Linux系统可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器 1、关闭防火墙 sudo systemctl stop firewalld.service             关闭防火墙 sudo systemctl disable firewalld.service        卸载防火墙  2、下载安装相关依赖包 yum -y install openssl-deve">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-03-15T02:19:09.209Z">
+<meta property="og:updated_time" content="2021-03-15T02:24:26.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django在Linux上部署">
 <meta name="twitter:description" content="一、一个Linux系统可以利用虚拟机在本地创建一个Linux系统，或者使用云服务器 1、关闭防火墙 sudo systemctl stop firewalld.service             关闭防火墙 sudo systemctl disable firewalld.service        卸载防火墙  2、下载安装相关依赖包 yum -y install openssl-deve">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2021-03-15 10:19:09" itemprop="dateModified" datetime="2021-03-15T10:19:09+08:00">2021-03-15</time>
+                <time title="Updated at: 2021-03-15 10:24:26" itemprop="dateModified" datetime="2021-03-15T10:24:26+08:00">2021-03-15</time>
               
             
           </span>
@@ -556,7 +556,7 @@
 <p>tail -f /var/log/nginx/error.log</p>
 </blockquote>
 <h4 id="1-配置nginx文件"><a href="#1-配置nginx文件" class="headerlink" title="1.配置nginx文件"></a>1.配置nginx文件</h4><blockquote>
-<p>[root@zhou ~]# cd /etc/nginx/conf.d/<br>[root@zhou conf.d]# vi music.conf            #一下配置手打不要直接复制！！！</p>
+<p>[root@zhou ~]# cd /etc/nginx/conf.d/<br>[root@zhou conf.d]# vi music.conf            #以下配置手打不要直接复制！！！</p>
 <p>#设置项目music的Nginx服务器配置<br>server {<br>        listen 8090;<br>        server_name 127.0.0.1;<br>        charset utf-8;</p>
 <p>​        client_max_body_size 75M;</p>
 <p>#配置媒体资源文件<br>location /media {<br>        expires 30d;<br>        autoindex on;<br>        add_header Cache-Control private;<br>        alias /home/Myblog/media/;<br>}</p>
