@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="前言1234# -*- coding: utf-8 -*-import urllib3urllib3.disable_warnings()# 消除不必要的警告，和编码错误，这是前置条件不可少 一、抓包工具一、原理 这类型工具的原理都是通过代理进行抓包的   http就是简单的显示，然后转发 https因为有加密，所以抓包工具没办法直接显示，需要通过安装抓包工具的证书，再客户端和服务器之间增增加一层">
+<meta name="keywords" content="爬虫知识详解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫知识详解">
+<meta property="og:url" content="http://yoursite.com/2021/04/26/爬虫知识详解/index.html">
+<meta property="og:site_name" content="小周的博客">
+<meta property="og:description" content="前言1234# -*- coding: utf-8 -*-import urllib3urllib3.disable_warnings()# 消除不必要的警告，和编码错误，这是前置条件不可少 一、抓包工具一、原理 这类型工具的原理都是通过代理进行抓包的   http就是简单的显示，然后转发 https因为有加密，所以抓包工具没办法直接显示，需要通过安装抓包工具的证书，再客户端和服务器之间增增加一层">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-04-26T13:13:36.927Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="爬虫知识详解">
+<meta name="twitter:description" content="前言1234# -*- coding: utf-8 -*-import urllib3urllib3.disable_warnings()# 消除不必要的警告，和编码错误，这是前置条件不可少 一、抓包工具一、原理 这类型工具的原理都是通过代理进行抓包的   http就是简单的显示，然后转发 https因为有加密，所以抓包工具没办法直接显示，需要通过安装抓包工具的证书，再客户端和服务器之间增增加一层">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/04/26/爬虫知识详解/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>爬虫知识详解 | 小周的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小周的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/04/26/爬虫知识详解/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小周的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">爬虫知识详解
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-04-26 19:43:51 / Updated at: 21:13:36" itemprop="dateCreated datePublished" datetime="2021-04-26T19:43:51+08:00">2021-04-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/04/26/爬虫知识详解/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2021/04/26/爬虫知识详解/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib3</span><br><span class="line">urllib3.disable_warnings()</span><br><span class="line"><span class="comment"># 消除不必要的警告，和编码错误，这是前置条件不可少</span></span><br></pre></td></tr></table></figure>
+<h1 id="一、抓包工具"><a href="#一、抓包工具" class="headerlink" title="一、抓包工具"></a>一、抓包工具</h1><h2 id="一、原理"><a href="#一、原理" class="headerlink" title="一、原理"></a>一、原理</h2><blockquote>
+<p>这类型工具的原理都是通过代理进行抓包的</p>
+</blockquote>
+<ul>
+<li>http就是简单的显示，然后转发</li>
+<li>https因为有加密，所以抓包工具没办法直接显示，需要通过安装抓包工具的证书，再客户端和服务器之间增增加一层抓包工具。<br>对于浏览器来说，抓包工具就是服务器，应用抓包工具的证书进行加解密；对于服务器来说，抓包工具就是客户端，应用服务器的真实证书进行加解密。</li>
+</ul>
+<h2 id="二、抓包工具的作用"><a href="#二、抓包工具的作用" class="headerlink" title="二、抓包工具的作用"></a>二、抓包工具的作用</h2><ul>
+<li>能够监听数据</li>
+<li>能够正常显示数据</li>
+<li>能够设置过滤条件，查看特定目标数据，过滤host，协议，类型等等</li>
+<li>能够在监听到的数据中进行查找</li>
+<li>能够中断请求，修改参数，手动提交</li>
+<li>能够自动提交请求，测试服务器限制</li>
+</ul>
+<h2 id="三、准备工作"><a href="#三、准备工作" class="headerlink" title="三、准备工作"></a>三、准备工作</h2><h3 id="1、浏览器"><a href="#1、浏览器" class="headerlink" title="1、浏览器"></a>1、浏览器</h3><blockquote>
+<p>需要安装代理工具，各个浏览器不同，总之就是可以快速应用代理配置，比系统代理设置简单易用<br>需要启用插件，chrome勾选启用并且勾选开发者模式</p>
+</blockquote>
+<h3 id="2、防火墙"><a href="#2、防火墙" class="headerlink" title="2、防火墙"></a>2、防火墙</h3><blockquote>
+<p>关闭系统防火墙或第三方防火墙，或者设置允许规则</p>
+</blockquote>
+<h3 id="3、清除系统代理和IE代理"><a href="#3、清除系统代理和IE代理" class="headerlink" title="3、清除系统代理和IE代理"></a>3、清除系统代理和IE代理</h3><h2 id="四、charles"><a href="#四、charles" class="headerlink" title="四、charles"></a>四、charles</h2><ul>
+<li>1、安装证书，双击证书或在cmd中输入certmgr.msc</li>
+<li>2、配置http和https，proxy setting ， SSL proxying setting</li>
+<li>3、proxy&gt;&gt;recording setting ，进行过滤</li>
+<li>3、断点设置，可以观察每一步操作</li>
+<li>4、edit，可以编辑后发送</li>
+<li>5、repeat和repeat advance</li>
+<li>6、模拟慢速网络</li>
+<li>7、filter和recording setting</li>
+<li>8、map和rewrite</li>
+</ul>
+<p>注意事项：</p>
+<ul>
+<li>不建议进行host过滤捕捉，有可能遗漏请求</li>
+<li>显示乱码，查看raw</li>
+<li>显示正方形框，需要去浏览器查看</li>
+<li>依照抓包工具的分析编写爬虫流程后，设置代理，捕获自己的爬虫程序的数据库，和正常访问的对比</li>
+</ul>
+<h2 id="五、fiddler"><a href="#五、fiddler" class="headerlink" title="五、fiddler"></a>五、fiddler</h2><h3 id="1、捕获窗口表格的列说明"><a href="#1、捕获窗口表格的列说明" class="headerlink" title="1、捕获窗口表格的列说明"></a>1、捕获窗口表格的列说明</h3><blockquote>
+</blockquote>
+<ul>
+<li>#：抓取HTTP Request的序号，从1开始，以此递增</li>
+<li>Result：HTTP状态码</li>
+<li>Protocol：请求使用的协议，如HTTP/HTTPS/FTP等</li>
+<li>Host：请求地址的主机名</li>
+<li>URL：请求资源的位置</li>
+<li>Body：该请求的大小</li>
+<li>Caching:请求的缓存过期时间或者缓存控制值</li>
+<li>Content-Type:请求响应的类型</li>
+<li>Process:发送此请求的进程：进程ID</li>
+<li>Comments:允许用户为此回话添加备注</li>
+<li>Custom：允许用户设置自定义值</li>
+</ul>
+<h3 id="2、内置命令与断点命令"><a href="#2、内置命令与断点命令" class="headerlink" title="2、内置命令与断点命令"></a>2、内置命令与断点命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">命令 |对应请求项|   介绍                                      | 示例  </span><br><span class="line">内置命令：</span><br><span class="line">?      All       问号后边跟一个字符串，可以匹配出包含这个字符串的请求        ?google</span><br><span class="line">&gt;      Body      大于号后面跟一个数字，可以匹配出请求大小，大于这个数字请求	  &gt;1000</span><br><span class="line">&lt;      Body      小于号跟大于号相反，匹配出请求大小，小于这个数字的请求	      &lt;100</span><br><span class="line">=      Result    等于号后面跟数字，可以匹配HTTP返回码	                      =200</span><br><span class="line">@      Host      @后面跟Host，可以匹配域名				             @www.baidu.com</span><br><span class="line">select Content-Type   select后面跟响应类型，可以匹配到相关的类型	      select image</span><br><span class="line">cls    All       清空当前所有请求			                              cls</span><br><span class="line">dump   All       将所有请求打包成saz压缩包，保存到“我的文档\Fiddler2\Captures”目录下 dump	</span><br><span class="line">start  All       开始监听请求				                              start</span><br><span class="line">stop   All       停止监听请求	                                          stop</span><br><span class="line"></span><br><span class="line">断点命令 </span><br><span class="line">bpafter All      bpafter后边跟一个字符串，表示中断所有包含该字符串的请求	  bpafter baidu（输入bpafter解除断点）</span><br><span class="line">bpu     All      跟bpafter差不多，只不过这个是收到请求了，中断响应	      bpu baidu（输入bpu解除断点）</span><br><span class="line">bps     Result   后面跟状态吗，表示中断所有是这个状态码的请求	          bps 200（输入bps解除断点）</span><br><span class="line">bpv/bpm HTTP方法 只中断HTTP方法的命令，HTTP方法如POST、GET	              bpv get（输入bpv解除断点）</span><br><span class="line">g/go    All      放行所有中断下来的请求                                 g</span><br></pre></td></tr></table></figure>
+<h3 id="3、websocket"><a href="#3、websocket" class="headerlink" title="3、websocket"></a>3、websocket</h3><h1 id="二、GET、POST、session基础用法"><a href="#二、GET、POST、session基础用法" class="headerlink" title="二、GET、POST、session基础用法"></a>二、GET、POST、session基础用法</h1><h2 id="一、get、option、head等方法"><a href="#一、get、option、head等方法" class="headerlink" title="一、get、option、head等方法"></a>一、get、option、head等方法</h2><pre><code>### 1、参数
+</code></pre><ul>
+<li>url ： 目标网站的地址</li>
+<li>params: url的参数部分，接受的是字典 或 ((‘k1’,’v1’),(‘k2’,’v2’)) ， 没参数可以忽略</li>
+<li>headers: 请求的headers部分，字典类型</li>
+<li>cookies: 指定的cookies，一般由requests自己控制</li>
+<li>files: 文件上传时，指定的参数 </li>
+<li>auth: auth效验，一般不使用</li>
+<li>timeout: 2种参数，一种是 数字，就是所有的超时，  这种使用最多！一种是 (connect timeout, read timeout) ，2个数值的元组，第一个参数是连接超时的时间，第二个参数是 读取response超时时间</li>
+<li>allow_redirects: 302 类似这样的状态，是否允许自动跳转，默认是允许</li>
+<li>proxies: 代理参数， {‘http’:’127.0.0.1:8888’}</li>
+<li>verify: 是否效验https服务器的证书是否安全，默认是True，但是我们一般都会修改为 False</li>
+<li>stream: 流方式获取内容，一般不会使用</li>
+<li>cert:  第一种方式：  (.pem)， 指定本地文件夹中的 pem文件的完整路径</li>
+</ul>
+<p>​           第二种方式： (‘test.cert’, ‘test.key’) ，就是cert文件和key文件的完整路径</p>
+<h3 id="2、基本请求"><a href="#2、基本请求" class="headerlink" title="2、基本请求"></a>2、基本请求</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">r = requests.get(<span class="string">'http://httpbin.org/get'</span>)</span><br><span class="line"></span><br><span class="line">print(r.content)  <span class="comment"># content是获取 bytes</span></span><br><span class="line"></span><br><span class="line">print(r.text)  <span class="comment"># text 是获取str</span></span><br><span class="line"></span><br><span class="line">print(r.status_code)  <span class="comment"># status_code 状态码</span></span><br><span class="line"></span><br><span class="line">print(r.headers)  <span class="comment"># 获取响应的头内容，字典</span></span><br><span class="line"></span><br><span class="line">print(r.cookies)  <span class="comment"># 获取响应的 cookie 内容 ，RequestsCookieJar 类似字典</span></span><br><span class="line"></span><br><span class="line">print(r.encoding) <span class="comment"># 获取响应的 编码</span></span><br><span class="line"></span><br><span class="line">print(r.url) <span class="comment"># 获取响应的 url 地址</span></span><br></pre></td></tr></table></figure>
+<h2 id="二、POST方法"><a href="#二、POST方法" class="headerlink" title="二、POST方法"></a>二、POST方法</h2><h3 id="1、参数"><a href="#1、参数" class="headerlink" title="1、参数"></a>1、参数</h3><ul>
+<li><em>url ： 目标网站的地址</em></li>
+<li><em>params: url的参数部分，接受的是字典 或 ((‘k1’,’v1’),(‘k2’,’v2’)) ， 没参数可以忽略</em></li>
+<li><em>data: form表单数据的提交，在request的body部分，形式是 urlencode ，  k1=v1&amp;k2=v2  ， 和json不同时提交</em></li>
+<li><em>json: json数据提交，在body部分是： {‘k1’:’v2’}  ，和 data不同时提交</em></li>
+<li><em>headers: 请求的headers部分，字典类型</em></li>
+<li><em>cookies: 指定的cookies，一般由requests自己控制</em></li>
+<li><em>files: 文件上传时，指定的参数</em> </li>
+<li><em>auth: auth效验，一般不使用</em></li>
+<li><em>timeout: 2种参数，一种是 数字，就是所有的超时，  这种使用最多！</em></li>
+</ul>
+<p>​                    <em>一种是 (connect timeout, read timeout) ，2个数值的元组，第一个参数是连接超时的时间，第二个参数是 读取response超时时间</em></p>
+<ul>
+<li><em>allow_redirects: 302 类似这样的状态，是否允许自动跳转，默认是允许</em></li>
+<li><em>proxies: 代理参数， {‘http’:’127.0.0.1:8888’}</em></li>
+<li><em>verify: 是否效验https服务器的证书是否安全，默认是True，但是我们一般都会修改为 False</em></li>
+<li><em>stream: 流方式获取内容，一般不会使用</em></li>
+<li><em>cert:  第一种方式：  (.pem)， 指定本地文件夹中的 pem文件的完整路径</em></li>
+</ul>
+<p>​           <em>第二种方式： (‘test.cert’, ‘test.key’) ，就是cert文件和key文件的完整路径</em></p>
+<h2 id="三、session用法"><a href="#三、session用法" class="headerlink" title="三、session用法"></a>三、session用法</h2><h3 id="1、标准的session初始化"><a href="#1、标准的session初始化" class="headerlink" title="1、标准的session初始化"></a>1、标准的session初始化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用session，可以统一设置一些共有的参数，而不需要在每一步的get或post中设置，可继承属性</span></span><br><span class="line">s = requests.session()</span><br><span class="line">s.verify = <span class="keyword">False</span> <span class="comment"># 这个不可少，不然访问https请求，会报错</span></span><br><span class="line">s.trust_env = <span class="keyword">False</span> <span class="comment"># 不是系统自带的配置，代理配置、verify配置</span></span><br><span class="line"><span class="comment"># s.proxies = &#123;'http': '127.0.0.1:8888' , 'https': '127.0.0.1:8888'&#125;</span></span><br><span class="line">s.headers = &#123;</span><br><span class="line">    <span class="string">'header1'</span>: <span class="string">'v1'</span>,</span><br><span class="line">    <span class="string">'header2'</span>: <span class="string">'v2'</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="三、编码"><a href="#三、编码" class="headerlink" title="三、编码"></a>三、编码</h1><h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><blockquote>
+<pre><code>requests 的 response的编码：
+在 requests.utils 中的 get_encoding_from_headers 方法 ，进行的编码判断
+1、response的headers中，设置了 content-type， 
+    其中必须是包含 text ,但是没有设置 charset，那么response的 encoding会设置为  ISO-8859-1
+2、response的headers中，设置了 content-type， 
+    值包含text，并且设置了charset，那么 encoding 就是 这个 charset 的值
+3、headers中没有设置 content-type，那么 encoding 就是  UTF-8
+
+eg:    r.encoding = &apos;utf-8&apos;
+</code></pre></blockquote>
+<h2 id="二、常见编码"><a href="#二、常见编码" class="headerlink" title="二、常见编码"></a>二、常见编码</h2><h1 id="四、一般流程"><a href="#四、一般流程" class="headerlink" title="四、一般流程"></a>四、一般流程</h1><h2 id="一、步骤"><a href="#一、步骤" class="headerlink" title="一、步骤"></a>一、步骤</h2><h3 id="1、抓包"><a href="#1、抓包" class="headerlink" title="1、抓包"></a>1、抓包</h3><ul>
+<li>1、清除浏览器缓存</li>
+<li>2、有隐身窗口的使用隐身窗口，没有的就打开一个新的标签</li>
+<li>3、打开 charles，并且监听</li>
+<li>4、浏览器中启用代理</li>
+<li>5、在浏览器中输入目标网址，如： <em><a href="https://www.qidian.com/rank/yuepiao" target="_blank" rel="noopener">https://www.qidian.com/rank/yuepiao</a></em> </li>
+<li>6、在浏览器正常操作，查看到所有需要的信息的网页</li>
+<li>7、操作完成后，停止charles的抓包，关闭网页的代理</li>
+<li>8、清理charles的抓包数据</li>
+<li>9、保存抓包信息</li>
+</ul>
+<h1 id="五、算法加密"><a href="#五、算法加密" class="headerlink" title="五、算法加密"></a>五、算法加密</h1><p>(原理就是对bs64进行加密)</p>
+<h2 id="一、常见算法加密"><a href="#一、常见算法加密" class="headerlink" title="一、常见算法加密"></a>一、常见算法加密</h2><h3 id="1、MD5、RSA"><a href="#1、MD5、RSA" class="headerlink" title="1、MD5、RSA"></a>1、MD5、RSA</h3><h3 id="1、遇到’-’号"><a href="#1、遇到’-’号" class="headerlink" title="1、遇到’%’号"></a>1、遇到’%’号</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">parse.quote(s) <span class="comment"># 编码</span></span><br><span class="line">parse.unquote(s) <span class="comment"># 解码</span></span><br><span class="line">urlencode(d)   <span class="comment">#  将字典转为get参数串</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/爬虫知识详解/" rel="tag"><i class="fa fa-tag"></i> 爬虫知识详解</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/05/Django详解/" rel="next" title="Django详解">
+                <i class="fa fa-chevron-left"></i> Django详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/admin.png" alt="周某人">
+            
+              <p class="site-author-name" itemprop="name">周某人</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shiguangzhe.top/" title="https://shiguangzhe.top/" rel="noopener" target="_blank">水墨青衫</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#一、抓包工具"><span class="nav-number">2.</span> <span class="nav-text">一、抓包工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、原理"><span class="nav-number">2.1.</span> <span class="nav-text">一、原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、抓包工具的作用"><span class="nav-number">2.2.</span> <span class="nav-text">二、抓包工具的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、准备工作"><span class="nav-number">2.3.</span> <span class="nav-text">三、准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、浏览器"><span class="nav-number">2.3.1.</span> <span class="nav-text">1、浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、防火墙"><span class="nav-number">2.3.2.</span> <span class="nav-text">2、防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、清除系统代理和IE代理"><span class="nav-number">2.3.3.</span> <span class="nav-text">3、清除系统代理和IE代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、charles"><span class="nav-number">2.4.</span> <span class="nav-text">四、charles</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、fiddler"><span class="nav-number">2.5.</span> <span class="nav-text">五、fiddler</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、捕获窗口表格的列说明"><span class="nav-number">2.5.1.</span> <span class="nav-text">1、捕获窗口表格的列说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、内置命令与断点命令"><span class="nav-number">2.5.2.</span> <span class="nav-text">2、内置命令与断点命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、websocket"><span class="nav-number">2.5.3.</span> <span class="nav-text">3、websocket</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、GET、POST、session基础用法"><span class="nav-number">3.</span> <span class="nav-text">二、GET、POST、session基础用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、get、option、head等方法"><span class="nav-number">3.1.</span> <span class="nav-text">一、get、option、head等方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2、基本请求"><span class="nav-number">3.1.1.</span> <span class="nav-text">2、基本请求</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、POST方法"><span class="nav-number">3.2.</span> <span class="nav-text">二、POST方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、参数"><span class="nav-number">3.2.1.</span> <span class="nav-text">1、参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、session用法"><span class="nav-number">3.3.</span> <span class="nav-text">三、session用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、标准的session初始化"><span class="nav-number">3.3.1.</span> <span class="nav-text">1、标准的session初始化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、编码"><span class="nav-number">4.</span> <span class="nav-text">三、编码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">4.1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、常见编码"><span class="nav-number">4.2.</span> <span class="nav-text">二、常见编码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、一般流程"><span class="nav-number">5.</span> <span class="nav-text">四、一般流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、步骤"><span class="nav-number">5.1.</span> <span class="nav-text">一、步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、抓包"><span class="nav-number">5.1.1.</span> <span class="nav-text">1、抓包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、算法加密"><span class="nav-number">6.</span> <span class="nav-text">五、算法加密</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、常见算法加密"><span class="nav-number">6.1.</span> <span class="nav-text">一、常见算法加密</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、MD5、RSA"><span class="nav-number">6.1.1.</span> <span class="nav-text">1、MD5、RSA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1、遇到’-’号"><span class="nav-number">6.1.2.</span> <span class="nav-text">1、遇到’%’号</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周某人</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+  
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: '',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'ce717dc71ef58f203a5b0568467853963e7f7d7c',
+            
+                client_id: '9c5db405241643bb346f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" color="123,143,200" opacity="0.7" zindex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	
+</body>
+</html>
