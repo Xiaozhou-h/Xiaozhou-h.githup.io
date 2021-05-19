@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="一、   简介 Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis">
+<meta name="keywords" content="redis学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis学习">
+<meta property="og:url" content="http://yoursite.com/2021/05/18/redis学习/index.html">
+<meta property="og:site_name" content="小周的博客">
+<meta property="og:description" content="一、   简介 Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2021-05-18T13:48:56.788Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis学习">
+<meta name="twitter:description" content="一、   简介 Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。 它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。 Redis">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/05/18/redis学习/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>redis学习 | 小周的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小周的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>Über</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Kategorien</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/05/18/redis学习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="周某人">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/admin.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小周的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">redis学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+
+              
+                
+              
+
+              <time title="Post created: 2021-05-18 11:00:03 / Updated at: 21:48:56" itemprop="dateCreated datePublished" datetime="2021-05-18T11:00:03+08:00">2021-05-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/05/18/redis学习/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2021/05/18/redis学习/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="一、-简介"><a href="#一、-简介" class="headerlink" title="一、   简介"></a>一、   简介</h1><blockquote>
+<p>Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统，它可以用作数据库、缓存和消息中间件。</p>
+<p>它支持多种类型的数据结构，如 字符串（strings）， 散列（hashes）， 列表（lists）， 集合（sets），有序集合（sorted sets） 与范围查询， bitmaps， hyperloglogs 和 地理空间（geospatial） 索引半径查询。</p>
+<p>Redis 内置了 复制（replication），LUA脚本（Lua scripting），LRU驱动事件（LRU eviction），事务（transactions）和不同级别的 磁盘持久化（persistence）， 并通过 Redis哨兵（Sentinel）</p>
+<p>和自动分区（Cluster）提供高可用性（high availability）。</p>
+<p>不要把 Redis 用作主要的数据存储数据库！！！！</p>
+<p>不能存储太多的信息！！大数据量的信息不要存储到Redis</p>
+<p>Redis 与其他 key - value 缓存产品有以下三个特点：</p>
+<p>1、支持数据的持久化，可以将内存中的数据保存在磁盘中，重启的时候可以再次加载进行使用。</p>
+<p>2、不仅仅支持简单的key-value类型的数据，同时还提供list，set，zset，hash等数据结构的存储。</p>
+<p>3、支持数据的备份，即master-slave模式的数据备份。</p>
+<p>优势</p>
+<p>1、性能极高：Redis能读的速度是110000次/s，写的速度是81000次/s 。</p>
+<p>2、丰富的数据类型：Redis支持二进制案例的 Strings, Lists, Hashes, Sets 及 Ordered Sets 数据类型操作。</p>
+<p>3、原子：Redis的所有操作都是原子性的，意思就是要么成功执行要么失败完全不执行。</p>
+<p>​           单个操作是原子性的。多个操作也支持事务，即原子性，通过MULTI和EXEC指令包起来。</p>
+<p>4、丰富的特性：Redis还支持 publish/subscribe, 通知, key 过期等等特性</p>
+</blockquote>
+<h1 id="二、-文档"><a href="#二、-文档" class="headerlink" title="二、   文档"></a>二、   文档</h1><p>1、官网文档：<a href="https://redis.io/documentation" target="_blank" rel="noopener">https://redis.io/documentation</a></p>
+<p>2、中文文档：<a href="http://www.redis.cn/documentation.html" target="_blank" rel="noopener">http://www.redis.cn/documentation.html</a></p>
+<h1 id="三、-安装"><a href="#三、-安装" class="headerlink" title="三、   安装"></a>三、   安装</h1><p>linux版本最新的是4.0.9</p>
+<p>链接地址：<a href="https://redis.io/download" target="_blank" rel="noopener">https://redis.io/download</a></p>
+<p>windows平台最好的 MicrosoftArchive 维护的版本：</p>
+<p>目前最新的3.2.100</p>
+<p>以 windows 平台下为例：</p>
+<p>1、链接：<a href="https://github.com/MicrosoftArchive/redis/releases，下载对应版本的zip，解压缩版本" target="_blank" rel="noopener">https://github.com/MicrosoftArchive/redis/releases，下载对应版本的zip，解压缩版本</a></p>
+<p>2、解压到 d:\redis</p>
+<p>3、将 d:\redis 添加到 环境变量 path 中</p>
+<p>4、打开 cmd 窗口，切换到 d:\redis 目录下，运行</p>
+<p>​    redis-server.exe redis.windows.conf</p>
+<p>​    这个 redis.windows.conf 就是相关的配置信息：</p>
+<p>​    如：</p>
+<p>​    bind 127.0.0.1</p>
+<p>​    port 6379</p>
+<p>​    protected-mode yes</p>
+<p>​    等</p>
+<p>5、可以查看到</p>
+<p>​    Running in standalone mode</p>
+<p>​    port：6379</p>
+<p>​    PID : 13064</p>
+<p>6、这个 cmd 窗口 就是启动服务的窗口，不要关闭</p>
+<p>7、重新开启一个cmd窗口，运行</p>
+<p>​    redis-cli.exe -h 127.0.0.1 -p 6379</p>
+<p>​    就可以连接到 redis</p>
+<h1 id="四、-配置"><a href="#四、-配置" class="headerlink" title="四、   配置"></a>四、   配置</h1><p>连接到 redis 命令窗口后，</p>
+<p>可以通过    config get config_key  查看，譬如：config get loglevel</p>
+<p>可以通过    config set config_key config_value ，譬如：config set loglevel ‘debug’</p>
+<p>redis.windows.conf 配置项说明如下：</p>
+<ol>
+<li>Redis默认不是以守护进程的方式运行，可以通过该配置项修改，使用yes启用守护进程</li>
+</ol>
+<p>​    daemonize no</p>
+<ol start="2">
+<li>当Redis以守护进程方式运行时，Redis默认会把pid写入/var/run/redis.pid文件，可以通过pidfile指定</li>
+</ol>
+<p>​    pidfile /var/run/redis.pid</p>
+<ol start="3">
+<li>指定Redis监听端口，默认端口为6379，作者选用6379作为默认端口，</li>
+</ol>
+<p>​    因为6379在手机按键上MERZ对应的号码，而MERZ取自意大利歌女Alessia Merz的名字</p>
+<p>​    port 6379</p>
+<ol start="4">
+<li>绑定的主机地址，这个已经要注意，做测试都是绑定 127.0.0.1</li>
+</ol>
+<p>​    bind 127.0.0.1</p>
+<p>5.当 客户端闲置多长时间后关闭连接，如果指定为0，表示关闭该功能</p>
+<p>​    timeout 300</p>
+<ol start="6">
+<li>指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为verbose</li>
+</ol>
+<p>​    loglevel verbose</p>
+<ol start="7">
+<li>日志记录方式，默认为标准输出，如果配置Redis为守护进程方式运行，</li>
+</ol>
+<p>​    而这里又配置为日志记录方式为标准输出，则日志将会发送给/dev/null</p>
+<p>​    logfile stdout</p>
+<ol start="8">
+<li>设置数据库的数量，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id</dbid></li>
+</ol>
+<p>​    databases 16</p>
+<ol start="9">
+<li>指定在多长时间内，有多少次更新操作，就将数据同步到数据文件，可以多个条件配合</li>
+</ol>
+<p>​    多个条件中，任意满足一个就会进行同步</p>
+<p>​    save <seconds> <changes></changes></seconds></p>
+<p>​    Redis默认配置文件中提供了三个条件：</p>
+<p>​    save 900 1</p>
+<p>​    save 300 10</p>
+<p>save 60 10000</p>
+<p>​    分别表示900秒（15分钟）内有1个更改，300秒（5分钟）内有10个更改以及60秒内有10000个更改。</p>
+<ol start="10">
+<li>指定存储至本地数据库时是否压缩数据，默认为yes，Redis采用LZF压缩，</li>
+</ol>
+<p>​        如果为了节省CPU时间，可以关闭该选项，但会导致数据库文件变的巨大</p>
+<p>​    rdbcompression yes</p>
+<ol start="11">
+<li>指定本地数据库文件名，默认值为dump.rdb</li>
+</ol>
+<p>​    dbfilename dump.rdb</p>
+<ol start="12">
+<li>指定本地数据库存放目录</li>
+</ol>
+<p>​    dir ./</p>
+<ol start="13">
+<li>设置当本机为slave服务时，设置master服务的IP地址及端口，在Redis启动时，它会自动从master进行数据同步</li>
+</ol>
+<p>​    slaveof <masterip> <masterport></masterport></masterip></p>
+<ol start="14">
+<li>当master服务设置了密码保护时，slave服务连接master的密码</li>
+</ol>
+<p>​    masterauth <master-password></master-password></p>
+<ol start="15">
+<li>设置Redis连接密码，如果配置了连接密码，</li>
+</ol>
+<p>​    客户端在连接Redis时需要通过AUTH <password>命令提供密码，默认关闭</password></p>
+<p>​    requirepass foobared</p>
+<ol start="16">
+<li>设置同一时间最大客户端连接数，默认无限制，Redis可以同时打开的客户端连接数为Redis进程可以打开的最大文件描述符数，</li>
+</ol>
+<p>​    如果设置 maxclients 0，表示不作限制。当客户端连接数到达限制时，</p>
+<p>​    Redis会关闭新的连接并向客户端返回max number of clients reached错误信息</p>
+<p>​    maxclients 128</p>
+<ol start="17">
+<li>指定Redis最大内存限制，Redis在启动时会把数据加载到内存中，达到最大内存后，</li>
+</ol>
+<p>​    Redis会先尝试清除已到期或即将到期的Key，当此方法处理 后，仍然到达最大内存设置，</p>
+<p>​    将无法再进行写入操作，但仍然可以进行读取操作。</p>
+<p>​    Redis新的vm机制，会把Key存放内存，Value会存放在swap区</p>
+<p>​    maxmemory <bytes></bytes></p>
+<ol start="18">
+<li>指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘，</li>
+</ol>
+<p>​    如果不开启，可能会在断电时导致一段时间内的数据丢失。</p>
+<p>​    因为 redis本身同步数据文件是按上面save条件来同步的，</p>
+<p>​    所以有的数据会在一段时间内只存在于内存中。默认为no</p>
+<p>​    appendonly no</p>
+<ol start="19">
+<li>指定更新日志文件名，默认为appendonly.aof</li>
+</ol>
+<p>​     appendfilename appendonly.aof</p>
+<ol start="20">
+<li>指定更新日志条件，共有3个可选值：</li>
+</ol>
+<p>​    no：表示等操作系统进行数据缓存同步到磁盘（快）</p>
+<p>​    always：表示每次更新操作后手动调用fsync()将数据写到磁盘（慢，安全）</p>
+<p>​    everysec：表示每秒同步一次（折衷，默认值）</p>
+<p>​    appendfsync everysec</p>
+<ol start="21">
+<li>指定是否启用虚拟内存机制，默认值为no，简单的介绍一下，VM机制将数据分页存放，</li>
+</ol>
+<p>​    由Redis将访问量较少的页即冷数据swap到磁盘上，访问多的页面由磁盘自动换出到内存中（</p>
+<p>​     vm-enabled no</p>
+<ol start="22">
+<li>虚拟内存文件路径，默认值为/tmp/redis.swap，不可多个Redis实例共享</li>
+</ol>
+<p>​     vm-swap-file /tmp/redis.swap</p>
+<ol start="23">
+<li>将所有大于vm-max-memory的数据存入虚拟内存,无论vm-max-memory设置多小,</li>
+</ol>
+<p>​    所有索引数据都是内存存储的(Redis的索引数据 就是keys),也就是说,</p>
+<p>​    当vm-max-memory设置为0的时候,其实是所有value都存在于磁盘。默认值为0</p>
+<p>​     vm-max-memory 0</p>
+<ol start="24">
+<li>Redis swap文件分成了很多的page，一个对象可以保存在多个page上面，但一个page上不能被多个对象共享，vm-page-size是要根据存储的 数据大小来设定的，作者建议如果存储很多小对象，page大小最好设置为32或者64bytes；如果存储很大大对象，则可以使用更大的page，如果不 确定，就使用默认值</li>
+</ol>
+<p>​     vm-page-size 32</p>
+<ol start="25">
+<li>设置swap文件中的page数量，由于页表（一种表示页面空闲或使用的bitmap）是在放在内存中的，，在磁盘上每8个pages将消耗1byte的内存。</li>
+</ol>
+<p>​     vm-pages 134217728</p>
+<ol start="26">
+<li>设置访问swap文件的线程数,最好不要超过机器的核数,如果设置为0,那么所有对swap文件的操作都是串行的，可能会造成比较长时间的延迟。默认值为4</li>
+</ol>
+<p>​     vm-max-threads 4</p>
+<ol start="27">
+<li>设置在向客户端应答时，是否把较小的包合并为一个包发送，默认为开启</li>
+</ol>
+<p>​    glueoutputbuf yes</p>
+<ol start="28">
+<li>指定在超过一定的数量或者最大的元素超过某一临界值时，采用一种特殊的哈希算法</li>
+</ol>
+<p>​    hash-max-zipmap-entries 64</p>
+<p>​    hash-max-zipmap-value 512</p>
+<ol start="29">
+<li>指定是否激活重置哈希，默认为开启（后面在介绍Redis的哈希算法时具体介绍）</li>
+</ol>
+<p>​    activerehashing yes</p>
+<ol start="30">
+<li>指定包含其它的配置文件，可以在同一主机上多个Redis实例之间使用同一份配置文件，</li>
+</ol>
+<p>​    而同时各个实例又拥有自己的特定配置文件</p>
+<p>​    include /path/to/local.conf</p>
+<h1 id="五、-数据类型"><a href="#五、-数据类型" class="headerlink" title="五、   数据类型"></a>五、   数据类型</h1><p>Redis支持五种数据类型：string（字符串），hash（哈希），list（列表），set（集合）及zset(sorted set：有序集合)。</p>
+<h2 id="1、-string"><a href="#1、-string" class="headerlink" title="1、        string"></a>1、        string</h2><p>字符串，单键最大512m</p>
+<p>​    命令列表：</p>
+<p>​    set name “test” # 设置 key</p>
+<p>​    get name  # 获取key</p>
+<p>​    set name aaa nx # nx参数，name 这个key 不存在时，才能新增成功，否则失败，如果已经存在，那么不修改</p>
+<p>​    set name aaa xx # xx参数，name 这个key 存在时，才能设置成功，否则失败，只有存在，才修改，不新增</p>
+<p>​    set name aaa ex 10  # ex 是失效时间，单位 秒， 不能和 px 同时存在</p>
+<p>​    set name aaa px 100 # px  是失效时间，单位 毫秒 ，不能和 ex同时存在</p>
+<p>​    # incr 原子增量，多个客户端请求不会冲突</p>
+<p>​    # 类似的 incrby ， decr， decrby</p>
+<p>​    set counter 100</p>
+<p>​    incr counter</p>
+<p>​    incr counter</p>
+<p>​    incrby counter 50</p>
+<p>​    decr counter</p>
+<p>​    # getset 设置新值并返回旧值</p>
+<p>​    get name</p>
+<p>​    getset name ccc</p>
+<p>​    get name</p>
+<p>​    # mget, mset 批量获取和修改</p>
+<p>​    set age 10</p>
+<p>​    mget name age</p>
+<p>​    mset name ‘ddd’ age 20</p>
+<p>​    # exists，检测键是否存在，返回 0和1</p>
+<p>​    exists name</p>
+<p>​    # del 删除key ,  存在返回 1  ，不存在返回0</p>
+<p>​    get age</p>
+<p>​    del age</p>
+<p>​    get age</p>
+<p>​    # expire ，设置过期，单位 秒</p>
+<p>​    set age 10</p>
+<p>​    expire age 3</p>
+<p>​    get age</p>
+<p>​    # 完整的set , ex 和 px 不能同时设置</p>
+<p>​    SET  键 值 [EX 秒]  [PX 毫秒]  [NX | XX]</p>
+<p>​    set age 20 ex 10 nx</p>
+<h2 id="2、-hash"><a href="#2、-hash" class="headerlink" title="2、        hash"></a>2、        hash</h2><p>一个键值(key=&gt;value)对集合，每个 hash 可以存储 2^32 -1 键值对（40多亿）</p>
+<p>​    hmset hash_test k1 “Hello” k2 “World” # 设置 hash 的 多个 key</p>
+<p>​    hset hash_test k3 100 # 设置单个key</p>
+<p>​    hget hash_test k1 # 获取单个 hash 的key</p>
+<p>​    hget hash_test k2</p>
+<p>​    hmget hash_test k1 k2 # 获取hash 的多个 key</p>
+<p>​    hgetall # 获取所有value</p>
+<p>​    # hincrby hash中的字段 增加</p>
+<p>​    hincrby hash_test k3 9</p>
+<h2 id="3、-list"><a href="#3、-list" class="headerlink" title="3、        list"></a>3、        list</h2><p>string类型的链表（和python的list有区别），按照插入顺序排序。</p>
+<p>​    可以添加一个元素到list的头部（左边）或者尾部（右边）</p>
+<p>​    lpush list_test one # 将元素添加到list的左边</p>
+<p>​    lpush list_test two</p>
+<p>​    lpush list_test three</p>
+<p>​    lrange list_test 0 10  # 获取列表的元素，下标从0开始，0 是起始位置（包含）， 10是结束位置（包含）</p>
+<p>​    rpush list_test four # 将元素添加到list的右边</p>
+<p>​    lrange list_test 0 10 # 获取一个list， 0 是起始位置（包含）， 10是结束位置（包含）</p>
+<p>​    lrange list_test 0 -1 # -1 表示最后</p>
+<p>​    lpop list_test # 从左边弹出元素，获取并删除</p>
+<p>​    rpop list_test # 从右边弹出元素</p>
+<p>​    rpush mylist 1 2 3 4 5</p>
+<p>​    ltrim mylist 0 2 # 删除给定范围之外的元素</p>
+<p>​    # 等待列表中的元素tasks，但如果5秒后没有元素可用，则返回 ,设置为 0 秒，则永久等待</p>
+<p>​    brpop tasks 5</p>
+<p>​    blpop tasks 5</p>
+<p>​    # llen 返回长度</p>
+<p>​    llen tasks</p>
+<p>​    # 不能更改已经存在key的类型，以下代码会出错</p>
+<p>​    set foo bar</p>
+<p>​    lpush foo 1 2 3  # 不能把一个 字符串 类型的key，修改为 list , 反之可以，从list可以通过set 修改为 字符串</p>
+<p>​    # 弹出所有元素后，key会被删除</p>
+<p>​    del foo</p>
+<p>​    lpush foo 1 2</p>
+<p>​    lpop foo</p>
+<p>​    lpop foo</p>
+<p>​    exists foo</p>
+<h2 id="4、-set"><a href="#4、-set" class="headerlink" title="4、        set"></a>4、        set</h2><p>string类型元素的无序集合，最大的成员数为 2^32 - 1(40多亿)</p>
+<p>​    sadd set_test one  # 在set 中增加 元素</p>
+<p>​    sadd set_test two three four</p>
+<p>​    sadd set_test three # 这条命令会被忽略，因为 set 中已经有 three 这个值存在了。</p>
+<p>​    smembers set_test # 获取set的所有值</p>
+<p>​    sismember set_test 3 # 检测 set 中是否存在某个 值</p>
+<p>​    # sinter 不同的set之间的交集，2个集合中都存在的数据</p>
+<p>​    sadd set_test1 one 1 two 2</p>
+<p>​    sinter set_test set_test1</p>
+<p>​    # srandmember 随机获取一个元素，不会删除元素在集合中的存在，对比 spop</p>
+<p>​    srandmember  deck</p>
+<p>​    # spop 弹出一个元素 ,会在集合中 删除该元素</p>
+<p>​    spop set_test1 [count]</p>
+<p>​    # sunionstore 复制 set 的副本</p>
+<p>​    sadd deck C1 C2 C3 C4 C5 C6 C7 C8 C9 C10 CJ CQ CK D1 D2 D3 D4 D5 D6 D7 D8 D9 D10 DJ DQ DK H1 H2 H3 H4 H5 H6 H7 H8 H9 H10 HJ HQ HK S1 S2 S3 S4 S5 S6 S7 S8 S9 S10 SJ SQ SK</p>
+<p>​    sunionstore deck_s deck</p>
+<p>​    # SCARD 获取 set 中的元素数量</p>
+<p>​    scard deck</p>
+<h2 id="5、-zset"><a href="#5、-zset" class="headerlink" title="5、        zset"></a>5、        zset</h2><p>string类型元素的有序集合，介于 hash和set 之间</p>
+<p>​    每个元素都会关联一个double类型的分数，成员是唯一的,</p>
+<p>​        但分数(score)却可以重复，根据分数从小到大排序</p>
+<p>​    zadd zset_test 0 one</p>
+<p>​    zadd zset_test 2 two</p>
+<p>​    zadd zset_test 1 three</p>
+<p>​    zadd zset_test 4 four</p>
+<p>​    zadd zset_test 2 five # 同样的分数，根据value的顺序排序，redis 2.8 之后新特性</p>
+<p>​    zadd zset_test 2 zero # 同样的分数，根据value的顺序排序，redis 2.8 之后新特性</p>
+<p>​    zadd zset_test 10001 six</p>
+<p>​    zrangebyscore zset_test 0 1000  # 根据分数范围查找元素, 不是下标！！！是分数！！</p>
+<p>​    zrange zset_test 0 1000 # 从小到大 获取元素</p>
+<p>​    zrevrange zset_test 0 -1 # 从大到小 获取元素</p>
+<p>​    # withscores 连元素和分数一起返回</p>
+<p>​    zrange zset_test 0 -1 withscores</p>
+<p>​    # zrangebyscore  获取分数小于等于这个值的所有元素</p>
+<p>​    zrangebyscore zset_test -inf 4</p>
+<p>​    # zremrangebyscore 删除 分数范围之间的元素 ,并且返回删除的个数</p>
+<p>​    zremrangebyscore zset_test 1 3</p>
+<p>​    # zrank 获取指定元素的位置 ，从 0 开始的</p>
+<p>​    zrange zset_test 0 -1</p>
+<p>​    zrank zset_test six</p>
+<p>​    # 获取zset的长度</p>
+<p>​    zcard zset_test</p>
+<h2 id="6、-其他"><a href="#6、-其他" class="headerlink" title="6、        其他"></a>6、        其他</h2><p>keys * ： 查看所有的key</p>
+<p>select num： 切换到指定数据库，默认是0：select 0</p>
+<p>flushall ： 删除所有数据库</p>
+<p>flushdb ： 删除当前数据库</p>
+<h1 id="六、-python操作redis"><a href="#六、-python操作redis" class="headerlink" title="六、   python操作redis"></a>六、   python操作redis</h1><h2 id="1、-使用-redis-库"><a href="#1、-使用-redis-库" class="headerlink" title="1、        使用 redis 库"></a>1、        使用 redis 库</h2><p>安装： pip install redis</p>
+<p>当前最新版：2.10.6</p>
+<p>官方文档：<a href="https://pypi.python.org/pypi/redis" target="_blank" rel="noopener">https://pypi.python.org/pypi/redis</a></p>
+<h2 id="2、-连接："><a href="#2、-连接：" class="headerlink" title="2、        连接："></a>2、        连接：</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># host是redis主机，需要redis服务端和客户端都启动 redis默认端口是6379</span></span><br><span class="line"><span class="comment"># decode_responses=True，写入的键值对中的value为str类型，为 False 写入的则为字节类型，默认为False。</span></span><br><span class="line">r = redis.Redis(host=<span class="string">'localhost'</span>, port=<span class="number">6379</span>, decode_responses=<span class="keyword">True</span>)</span><br><span class="line">r.set(<span class="string">'name'</span>, <span class="string">'junxi'</span>)  <span class="comment"># key是"foo" value是"bar" 将键值对存入redis缓存</span></span><br><span class="line">print(r[<span class="string">'name'</span>])</span><br><span class="line">print(r.get(<span class="string">'name'</span>))  <span class="comment"># 取出键name对应的值</span></span><br><span class="line">print(type(r.get(<span class="string">'name'</span>)))</span><br></pre></td></tr></table></figure>
+<h2 id="3、-连接池"><a href="#3、-连接池" class="headerlink" title="3、        连接池"></a>3、        连接池</h2><p>pool = redis.ConnectionPool(host=’127.0.0.1’, port=6379)</p>
+<p>r = redis.Redis(connection_pool=pool)</p>
+<p>一般情况下，我们不需要指定连接池，Redis 会自动使用</p>
+<h2 id="4、-管道技术"><a href="#4、-管道技术" class="headerlink" title="4、        管道技术"></a>4、        管道技术</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">4.1</span> 多行编写</span><br><span class="line"></span><br><span class="line">pipe = r.pipeline(transaction=<span class="keyword">True</span>)</span><br><span class="line">pipe.set(<span class="string">'name'</span>, <span class="string">'python'</span>)</span><br><span class="line">pipe.set(<span class="string">'age'</span>, <span class="number">22</span>)</span><br><span class="line"><span class="comment"># execute提交</span></span><br><span class="line">pipe.execute()</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="number">4.2</span> 一行编写</span><br><span class="line">pipe = r.pipeline()</span><br><span class="line">pipe.set(<span class="string">'foo'</span>, <span class="string">'bar'</span>).sadd(<span class="string">'faz'</span>, <span class="string">'baz'</span>).incr(<span class="string">'auto_number'</span>).execute()</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"><span class="number">4.3</span> 事务</span><br><span class="line"><span class="keyword">with</span> r.pipeline() <span class="keyword">as</span> pipe:</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="comment"># 监控 OUR-SEQUENCE-KEY  密钥</span></span><br><span class="line">            pipe.watch(<span class="string">'OUR-SEQUENCE-KEY'</span>)</span><br><span class="line">            <span class="comment"># 监听后，管道会进行 立刻执行命令 模式，除非我们设置为缓存模式</span></span><br><span class="line">            <span class="comment"># 这样允许我们获得序列的值</span></span><br><span class="line">            current_value = pipe.get(<span class="string">'OUR-SEQUENCE-KEY'</span>)</span><br><span class="line">            next_value = int(current_value) + <span class="number">1</span></span><br><span class="line">            <span class="comment"># 使用 multi 恢复到缓存模式</span></span><br><span class="line">            pipe.multi()</span><br><span class="line">            pipe.set(<span class="string">'OUR-SEQUENCE-KEY'</span>, next_value)</span><br><span class="line">            <span class="comment"># 执行许多行动</span></span><br><span class="line">            <span class="comment"># 最后执行 命令</span></span><br><span class="line">            pipe.execute()</span><br><span class="line">            <span class="comment"># 一直执行到这里，所以命令全部实现</span></span><br><span class="line">            <span class="comment"># 退出</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">except</span> WatchError <span class="keyword">as</span> e:</span><br><span class="line">            <span class="comment"># 另一个客户端修改了 OUR-SEQUENCE-KEY 的值，</span></span><br><span class="line">            <span class="comment"># 在我们监听之后，到最后 执行之前 这个时间段内</span></span><br><span class="line">            <span class="comment"># 回滚，重新执行</span></span><br><span class="line">            <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis学习/" rel="tag"><i class="fa fa-tag"></i> redis学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/04/26/爬虫知识详解/" rel="next" title="爬虫知识详解">
+                <i class="fa fa-chevron-left"></i> 爬虫知识详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/admin.png" alt="周某人">
+            
+              <p class="site-author-name" itemprop="name">周某人</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">Artikel</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">Tags</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://shiguangzhe.top/" title="https://shiguangzhe.top/" rel="noopener" target="_blank">水墨青衫</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、-简介"><span class="nav-number">1.</span> <span class="nav-text">一、   简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、-文档"><span class="nav-number">2.</span> <span class="nav-text">二、   文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、-安装"><span class="nav-number">3.</span> <span class="nav-text">三、   安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、-配置"><span class="nav-number">4.</span> <span class="nav-text">四、   配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、-数据类型"><span class="nav-number">5.</span> <span class="nav-text">五、   数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-string"><span class="nav-number">5.1.</span> <span class="nav-text">1、        string</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-hash"><span class="nav-number">5.2.</span> <span class="nav-text">2、        hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-list"><span class="nav-number">5.3.</span> <span class="nav-text">3、        list</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-set"><span class="nav-number">5.4.</span> <span class="nav-text">4、        set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、-zset"><span class="nav-number">5.5.</span> <span class="nav-text">5、        zset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、-其他"><span class="nav-number">5.6.</span> <span class="nav-text">6、        其他</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、-python操作redis"><span class="nav-number">6.</span> <span class="nav-text">六、   python操作redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-使用-redis-库"><span class="nav-number">6.1.</span> <span class="nav-text">1、        使用 redis 库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、-连接："><span class="nav-number">6.2.</span> <span class="nav-text">2、        连接：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、-连接池"><span class="nav-number">6.3.</span> <span class="nav-text">3、        连接池</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、-管道技术"><span class="nav-number">6.4.</span> <span class="nav-text">4、        管道技术</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">周某人</span>
+
+  
+
+  
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+  
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.6.0</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: '',
+            repo: '',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'ce717dc71ef58f203a5b0568467853963e7f7d7c',
+            
+                client_id: '9c5db405241643bb346f'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+<script type="text/javascript" color="123,143,200" opacity="0.7" zindex="-2" count="200" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+	
+</body>
+</html>
