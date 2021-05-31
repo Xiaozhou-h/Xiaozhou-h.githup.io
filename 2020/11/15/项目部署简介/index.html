@@ -108,25 +108,25 @@
 
 
 
-  <meta name="description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
-<meta name="keywords" content="宝塔部署项目">
+  <meta name="description" content="一、在普通的linux服务器上部署python项目1、安装好服务器2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、运行程序 每增加一台新的服务器，都需要重复上述的6步 二、使用docker部署的话只需要在docker中执行1、安装基础系统2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、上传容器到云服务器 每增加一台服务">
+<meta name="keywords" content="项目部署简介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="项目调试">
-<meta property="og:url" content="http://yoursite.com/2020/11/15/项目调试/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/11/15/项目部署简介/index.html">
 <meta property="og:site_name" content="小周的博客">
-<meta property="og:description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
+<meta property="og:description" content="一、在普通的linux服务器上部署python项目1、安装好服务器2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、运行程序 每增加一台新的服务器，都需要重复上述的6步 二、使用docker部署的话只需要在docker中执行1、安装基础系统2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、上传容器到云服务器 每增加一台服务">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-11-18T14:37:04.916Z">
+<meta property="og:updated_time" content="2021-05-20T01:01:18.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="项目调试">
-<meta name="twitter:description" content="基础环境  装好宝塔服务 宝塔里装好【Python项目管理器】 宝塔里装好【Nginx】  把Django项目代码发到服务器 把代码放到服务器上有两种方法：  方法一：服务器上安装Git，通过Git Clone代码到服务器上 方法二：通过宝塔的FTP工具把代码上传上去  注意： 在目录:/www/wwwroot/下新建一个文件夹， 把代码需要放到新建的目录中  在windows本地项目cmd中">
+<meta name="twitter:description" content="一、在普通的linux服务器上部署python项目1、安装好服务器2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、运行程序 每增加一台新的服务器，都需要重复上述的6步 二、使用docker部署的话只需要在docker中执行1、安装基础系统2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、上传容器到云服务器 每增加一台服务">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/11/15/项目调试/">
+  <link rel="canonical" href="http://yoursite.com/2020/11/15/项目部署简介/">
 
 
 
@@ -352,7 +352,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/项目调试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/项目部署简介/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周某人">
@@ -411,7 +411,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-18 22:37:04" itemprop="dateModified" datetime="2020-11-18T22:37:04+08:00">2020-11-18</time>
+                <time title="Updated at: 2021-05-20 09:01:18" itemprop="dateModified" datetime="2021-05-20T09:01:18+08:00">2021-05-20</time>
               
             
           </span>
@@ -425,8 +425,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/11/15/项目调试/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2020/11/15/项目调试/" itemprop="commentsCount"></span>
+                <a href="/2020/11/15/项目部署简介/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count gitment-comments-count" data-xid="/2020/11/15/项目部署简介/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -454,33 +454,19 @@
       
 
       
-        <p><strong>基础环境</strong></p>
-<ul>
-<li>装好宝塔服务</li>
-<li>宝塔里装好【Python项目管理器】</li>
-<li>宝塔里装好【Nginx】</li>
-</ul>
-<p><strong>把Django项目代码发到服务器</strong></p>
-<p>把代码放到服务器上有两种方法：</p>
-<ul>
-<li>方法一：服务器上安装Git，通过Git Clone代码到服务器上</li>
-<li>方法二：通过宝塔的FTP工具把代码上传上去</li>
-</ul>
-<p>注意： 在目录:<code>/www/wwwroot/</code>下新建一个文件夹， 把代码需要放到新建的目录中</p>
-<blockquote>
-<p>在windows本地项目cmd中   <code>pip freeze &gt; requirements.txt</code></p>
-</blockquote>
-<p><strong>创建Python（Django）项目</strong></p>
-<p>现在我们开始创建 python 项目。打开首页的 python 项目管理器，点击 添加项目。填充数据：<br>* 项目名称： 自定义就行<br>* 路径： 定位到 manage.py 文件所在的路径<br>* Python 版本： 选择你项目对应的 python 版本<br>* 框架： 选择 Django<br>* 启动方式： uswgi<br>* 启动文件/文件加： 定位到 wsgi.py 所在的路径<br>* 端口： 自定义就行，设置1024端口号之后的<br>* 勾选上 是否安装模块依赖 与 开机启动<br>点击确定，然后等待创建。</p>
-<p>在 python 项目管理器 中点击 【映射】，设置域名(或者外网IP)。</p>
-<p>映射成功后在面板侧边栏【网站】菜单中查看。（此时已经可以在外部访问了。但是是没有静态文件的）</p>
-<p>在网站中点击我们刚才映射出的域名或ip，会出现一个弹窗，选择 反向代理  &gt;    配置文件</p>
-<p>来添加静态文件和媒体资源的配置。</p>
-<blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; location /static/ &#123;</span><br><span class="line">&gt; alias /www/wwwroot/myblog/static/;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt; location /media/ &#123;</span><br><span class="line">&gt; alias /www/wwwroot/myblog/media/;</span><br><span class="line">&gt; &#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>接下来回到面版首页，点击 python 项目管理器 ，选择项目 进行重启。</p>
-<p>重启完成后 点击 Nginx 进行 重载配置。</p>
+        <h1 id="一、在普通的linux服务器上部署python项目"><a href="#一、在普通的linux服务器上部署python项目" class="headerlink" title="一、在普通的linux服务器上部署python项目"></a>一、在普通的linux服务器上部署python项目</h1><p>1、安装好服务器<br>2、安装python3.6<br>3、安装相应的python库<br>4、部署项目<br>5、修改相应的配置<br>6、运行程序</p>
+<p>每增加一台新的服务器，都需要重复上述的6步</p>
+<h1 id="二、使用docker部署的话"><a href="#二、使用docker部署的话" class="headerlink" title="二、使用docker部署的话"></a>二、使用docker部署的话</h1><p>只需要在docker中执行<br>1、安装基础系统<br>2、安装python3.6<br>3、安装相应的python库<br>4、部署项目<br>5、修改相应的配置<br>6、上传容器到云服务器</p>
+<p>每增加一台服务器，只需要在服务器中安装好docker，然后从云服务器上下载对应的容器，运行即可</p>
+<h1 id="三、部署一个爬虫项目-最基础的方式"><a href="#三、部署一个爬虫项目-最基础的方式" class="headerlink" title="三、部署一个爬虫项目(最基础的方式)"></a>三、部署一个爬虫项目(最基础的方式)</h1><h2 id="3-1-普通部署一个-scrapy-项目"><a href="#3-1-普通部署一个-scrapy-项目" class="headerlink" title="3.1 普通部署一个 scrapy 项目"></a>3.1 普通部署一个 scrapy 项目</h2><p>​    1、安装好服务器系统<br>    2、安装python3.6<br>    3、把爬虫项目拷贝到目标服务器<br>    4、运行，会提示缺少module<br>    5、安装对应的模块，通过在开发环境下执行<br>        pip freeze &gt; requirements.txt<br>        会在cmd命令窗口的当前目录下生成一个 requirements.txt 文件<br>        内容类似：<br>        aiodns==1.1.1<br>        aiohttp==3.1.0<br>        amqp==2.2.<br>        asn1crypto==0.24.02</p>
+<pre><code>    是所有当前环境下的第三方库和对应版本
+
+    将这个 requirements.txt 拷贝到服务器下
+    执行：
+    pip install -r requirements.txt
+    会自动安装txt 文本中的所有第三方对应版本的库
+6、继续运行，成功
+</code></pre><h2 id="3-2-通过docker和scrapyd部署一个-scrapy-项目"><a href="#3-2-通过docker和scrapyd部署一个-scrapy-项目" class="headerlink" title="3.2 通过docker和scrapyd部署一个 scrapy 项目"></a>3.2 通过docker和scrapyd部署一个 scrapy 项目</h2><p>​    1、在docker中生成一个镜像<br>    2、安装必须的环境<br>    3、部署项目<br>    4、生成最终的镜像<br>    5、将镜像上传到服务器<br>    6、在目标运行服务器上通过 docker pull url地址  下载对应的镜像<br>    7、运行镜像</p>
 
       
     </div>
@@ -504,7 +490,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/宝塔部署项目/" rel="tag"><i class="fa fa-tag"></i> 宝塔部署项目</a>
+            <a href="/tags/项目部署简介/" rel="tag"><i class="fa fa-tag"></i> 项目部署简介</a>
           
         </div>
       
@@ -583,8 +569,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Übersicht
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -661,6 +656,10 @@
                     <a href="https://shiguangzhe.top/" title="https://shiguangzhe.top/" rel="noopener" target="_blank">水墨青衫</a>
                   </li>
                 
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/huhuf/" title="https://www.cnblogs.com/huhuf/" rel="noopener" target="_blank">hhhhhhhhyyyyyyyy</a>
+                  </li>
+                
               </ul>
             </div>
           
@@ -673,6 +672,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、在普通的linux服务器上部署python项目"><span class="nav-number">1.</span> <span class="nav-text">一、在普通的linux服务器上部署python项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、使用docker部署的话"><span class="nav-number">2.</span> <span class="nav-text">二、使用docker部署的话</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、部署一个爬虫项目-最基础的方式"><span class="nav-number">3.</span> <span class="nav-text">三、部署一个爬虫项目(最基础的方式)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-普通部署一个-scrapy-项目"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 普通部署一个 scrapy 项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-通过docker和scrapyd部署一个-scrapy-项目"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 通过docker和scrapyd部署一个 scrapy 项目</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

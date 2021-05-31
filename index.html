@@ -828,7 +828,7 @@ Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统�
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/项目调试/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/项目部署简介/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周某人">
@@ -848,7 +848,7 @@ Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统�
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/11/15/项目调试/" class="post-title-link" itemprop="http://yoursite.com/index.html">项目调试</a>
+                <a href="/2020/11/15/项目部署简介/" class="post-title-link" itemprop="http://yoursite.com/index.html">项目调试</a>
               
             
           </h1>
@@ -890,7 +890,7 @@ Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2020-11-18 22:37:04" itemprop="dateModified" datetime="2020-11-18T22:37:04+08:00">2020-11-18</time>
+                <time title="Updated at: 2021-05-20 09:01:18" itemprop="dateModified" datetime="2021-05-20T09:01:18+08:00">2021-05-20</time>
               
             
           </span>
@@ -925,24 +925,14 @@ Redis 是一个开源（BSD许可）的，内存中的数据结构存储系统�
       
         
           
-          基础环境
-
-装好宝塔服务
-宝塔里装好【Python项目管理器】
-宝塔里装好【Nginx】
-
-把Django项目代码发到服务器
-把代码放到服务器上有两种方法：
-
-方法一：服务器上安装Git，通过Git Clone代码到服务器上
-方法二：通过宝塔的FTP工具把代码上传上去
-
-注意： 在目录:/www/w
+          一、在普通的linux服务器上部署python项目1、安装好服务器2、安装python3.63、安装相应的python库4、部署项目5、修改相应的配置6、运行程序
+每增加一台新的服务器，都需要重复上述的6步
+二、使用docker部署的话只需要在docker中执行1、安装基础系统2、安装python3
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/11/15/项目调试/#more" rel="contents">
+              <a class="btn" href="/2020/11/15/项目部署简介/#more" rel="contents">
                 Weiterlesen &raquo;
               </a>
             </div>
@@ -1486,7 +1476,7 @@ sudo systemctl disable firewalld.service
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/07/Docker排错/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/07/Docker详解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="周某人">
@@ -1506,7 +1496,7 @@ sudo systemctl disable firewalld.service
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/11/07/Docker排错/" class="post-title-link" itemprop="http://yoursite.com/index.html">Docker排错</a>
+                <a href="/2020/11/07/Docker详解/" class="post-title-link" itemprop="http://yoursite.com/index.html">Docker详解</a>
               
             
           </h1>
@@ -1548,7 +1538,7 @@ sudo systemctl disable firewalld.service
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2019-02-26 09:48:30" itemprop="dateModified" datetime="2019-02-26T09:48:30+08:00">2019-02-26</time>
+                <time title="Updated at: 2021-05-20 17:51:36" itemprop="dateModified" datetime="2021-05-20T17:51:36+08:00">2021-05-20</time>
               
             
           </span>
@@ -1583,13 +1573,12 @@ sudo systemctl disable firewalld.service
       
         
           
-          1、docker日志太多导致磁盘沾满问题
-12345清空日志：cat /dev/null &gt; /var/lib/docker/containers/container_id/container_log_name如下命令会清空对应的日志,如:[root@docker ~]# cat /dev/n
+          一、docker基础安装docker12345678910111213141516171819202122232425262728293031323334353637383940411、Docker 要求 CentOS 系统的内核版本高于 3.10 ，查看本页面的前提条件来验证你的CentOS 版本
           ...
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/11/07/Docker排错/#more" rel="contents">
+              <a class="btn" href="/2020/11/07/Docker详解/#more" rel="contents">
                 Weiterlesen &raquo;
               </a>
             </div>
@@ -2071,6 +2060,10 @@ sudo systemctl disable firewalld.service
                 
                   <li class="links-of-blogroll-item">
                     <a href="https://shiguangzhe.top/" title="https://shiguangzhe.top/" rel="noopener" target="_blank">水墨青衫</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/huhuf/" title="https://www.cnblogs.com/huhuf/" rel="noopener" target="_blank">hhhhhhhhyyyyyyyy</a>
                   </li>
                 
               </ul>
